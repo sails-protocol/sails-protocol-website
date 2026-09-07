@@ -1,120 +1,18 @@
 'use client';
-
-import { useEffect, useState } from 'react';
-import { ArrowDown, ArrowUpRight, Code2, Menu, Moon, Sun, X } from 'lucide-react';
-
-const rails = [
-  { label: 'Identity', items: ['Pubky', 'PKARR', 'Ed25519'] },
-  { label: 'Transport', items: ['Pear', 'Nostr', 'Iroh', 'HTTP'] },
-  { label: 'Settlement', items: ['Bitcoin', 'Lightning', 'Liquid', 'Stablecoins'] },
-];
-const semantics = ['Intent', 'Authority', 'Conditions', 'Evidence', 'Outcome'];
-const modules = [
-  ['OpenP2P', 'First module', 'Current'], ['OpenSettlement', 'Execution boundaries', 'Demonstrated'],
-  ['OpenIdentity', 'Participant authority', 'Demonstrated'], ['OpenReputation', 'Outcome-based trust', 'In development'],
-  ['OpenProof', 'Verifiable evidence', 'In development'], ['OpenLiquidity', 'Opportunity discovery', 'In development'],
-  ['OpenAgents', 'Bounded automation', 'Research / direction'], ['OpenFinance', 'Future economic primitives', 'Research / direction'],
-];
-const agentTools = [
-  ['Cursor', '/logos/cursor.svg'], ['Claude Code', '/logos/claudecode.svg'], ['Codex', null],
-  ['OpenCode', '/logos/opencode.svg'], ['Grok', null], ['OpenRouter', '/logos/openrouter.svg'],
-];
-
-function SailsMark() {
-  return <span className="brand-mark" aria-hidden="true"><span className="brand-sail brand-sail-a" /><span className="brand-sail brand-sail-b" /></span>;
-}
-
-export default function Home() {
-  const [dark, setDark] = useState(true);
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => { document.documentElement.classList.toggle('dark', dark); }, [dark]);
-
-  return (
-    <main>
-      <header className="site-header">
-        <a className="wordmark" href="#top" aria-label="Sails Protocol home"><SailsMark /><span><strong>SAILS</strong><small>PROTOCOL</small></span></a>
-        <nav className="desktop-nav" aria-label="Primary navigation"><a href="#protocol">Protocol</a><a href="#openp2p">OpenP2P</a><a href="#architecture">Architecture</a><a href="#status">Status</a></nav>
-        <div className="header-actions">
-          <button className="icon-button" onClick={() => setDark(!dark)} aria-label={`Use ${dark ? 'light' : 'dark'} theme`}>{dark ? <Sun size={17} /> : <Moon size={17} />}</button>
-          <a className="github-link" href="https://github.com/alan-schramm/Sails-Protocol" target="_blank" rel="noreferrer"><Code2 size={16} /> GitHub</a>
-          <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">{menuOpen ? <X size={20} /> : <Menu size={20} />}</button>
-        </div>
-      </header>
-
-      {menuOpen && <nav className="mobile-nav" aria-label="Mobile navigation">{['Protocol', 'OpenP2P', 'Architecture', 'Status'].map((item) => <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setMenuOpen(false)}>{item}</a>)}</nav>}
-
-      <section className="hero" id="top">
-        <div className="hero-grid" aria-hidden="true" />
-        <div className="hero-copy">
-          <div className="eyebrow"><span /> Open economic coordination infrastructure</div>
-          <h1>Different stacks.<br /><em>Shared economic meaning.</em></h1>
-          <p className="hero-intro">Sails Protocol helps wallets, agents and applications coordinate shared economic interactions without forcing them onto the same underlying stack.</p>
-          <div className="hero-actions"><a className="button button-primary" href="#architecture">Explore architecture <ArrowDown size={16} /></a><a className="button button-quiet" href="https://satsails.mintlify.app/concepts/protocol-primitives" target="_blank" rel="noreferrer">Read the docs <ArrowUpRight size={15} /></a></div>
-        </div>
-
-        <div className="coordination-map" aria-label="Sails coordination architecture">
-          <div className="map-rings" aria-hidden="true"><i /><i /><i /></div>
-          {rails.map((rail, index) => <div className={`edge-cluster edge-${index + 1}`} key={rail.label}><span className="cluster-label">{rail.label}</span><div>{rail.items.map((item) => <span key={item}>{item}</span>)}</div></div>)}
-          <div className="core-node"><SailsMark /><strong>SAILS</strong><span>Shared semantics</span></div>
-          <span className="map-caption">Simple at the center. Open at the edges.</span>
-        </div>
-
-        <div className="hero-principle"><span>01</span><p><strong>No token. No DAO. No new blockchain.</strong> Sails coordinates existing capabilities instead of creating another ecosystem to migrate into.</p></div>
-      </section>
-
-      <section className="islands-section" id="protocol">
-        <div className="section-heading"><span className="section-index">01 / The problem</span><h2>Open custody does not automatically create an open market.</h2><p>Wallets may be open and non-custodial while liquidity, trust and coordination remain trapped inside individual applications.</p></div>
-        <div className="islands-visual">
-          {['Wallet A', 'Wallet B', 'Wallet C'].map((wallet, index) => <article className="island" key={wallet}><div className="island-top"><span>0{index + 1}</span><i /></div><h3>{wallet}</h3><ul><li>Liquidity</li><li>Reputation</li><li>Trade history</li></ul><small>Application-bound market</small></article>)}
-          <div className="island-divider"><span>Economic islands</span></div>
-        </div>
-        <div className="statement-pair"><blockquote>“Your keys may be portable.<br /><strong>Your market usually isn’t.</strong>”</blockquote><blockquote>“Your keys may be portable.<br /><strong>Your economic history usually isn’t.</strong>”</blockquote></div>
-      </section>
-
-      <section className="semantics-section" id="architecture">
-        <div className="section-heading compact"><span className="section-index">02 / The protocol</span><h2>Coordination is the product.</h2><p>Sails defines the shared economic semantics. Identity, communication and settlement remain replaceable capabilities at the edges.</p></div>
-        <div className="semantic-flow">{semantics.map((item, index) => <div className="semantic-step" key={item}><span>0{index + 1}</span><strong>{item}</strong>{index < semantics.length - 1 && <i aria-hidden="true" />}</div>)}</div>
-        <div className="protocol-note"><p>The protocol should connect economic islands without becoming another island itself.</p><span>Stable semantics. Replaceable edges.</span></div>
-      </section>
-
-      <section className="p2p-section" id="openp2p">
-        <div className="p2p-intro"><span className="section-index">03 / First implementation</span><div><p className="kicker">Sails OpenP2P</p><h2>Wallets shouldn’t have to become exchanges to participate in markets.</h2></div></div>
-        <div className="p2p-layout">
-          <div className="p2p-orbit" aria-label="OpenP2P coordination capabilities"><div className="orbit-core"><strong>OPEN<br/>P2P</strong><small>Current focus</small></div>{['Discovery','Offers','Negotiation','Escrow','Evidence','Disputes'].map((x,i)=><span key={x} style={{'--i':i} as React.CSSProperties}>{x}</span>)}</div>
-          <div className="p2p-copy"><p>OpenP2P is the first concrete expression of the Sails thesis: a shared coordination surface for peer-to-peer markets across Bitcoin and stablecoin systems.</p><ul><li><span>01</span>Declare economic intent</li><li><span>02</span>Coordinate conditions and authority</li><li><span>03</span>Connect replaceable settlement capabilities</li><li><span>04</span>Produce an explicit economic outcome</li></ul><a className="text-link" href="https://satsails.mintlify.app/concepts/protocol-primitives" target="_blank" rel="noreferrer">Explore OpenP2P <ArrowUpRight size={15}/></a></div>
-        </div>
-      </section>
-
-      <section className="modules-section">
-        <div className="section-heading"><span className="section-index">04 / Modular by design</span><h2>One protocol.<br/>Focused modules.</h2><p>Each module owns a clear economic responsibility. Their presence here describes the architecture; their labels describe current maturity.</p></div>
-        <div className="module-list">{modules.map(([name,desc,status],i)=><article key={name} className={i===0?'featured':''}><span className="module-number">0{i+1}</span><div><h3>{name}</h3><p>{desc}</p></div><span className={`status status-${status.toLowerCase().replaceAll(' ','-').replace('/','')}`}>{status}</span></article>)}</div>
-      </section>
-
-      <section className="interop-section">
-        <div className="interop-head"><span className="section-index">05 / Development interoperability</span><h2>Same Sails semantics.<br/><em>Different implementations and interfaces.</em></h2></div>
-        <div className="interop-grid">
-          <article><span>Protocol implementations</span><h3>TypeScript</h3><p className="current-label">Current implementation</p><div className="future-items"><span>Rust <small>Direction</small></span><span>Go <small>Direction</small></span></div></article>
-          <article><span>Application platforms</span><h3>Web · React Native</h3><p>Wallets, fintechs and market interfaces.</p><div className="future-items"><span>iOS</span><span>Android</span></div></article>
-          <article><span>Native SDK targets</span><h3>Swift · Kotlin</h3><p>The minimum native surface required for each platform.</p></article>
-          <article><span>Developer & agent interfaces</span><h3>API · CLI</h3><p>Canonical access without semantic drift.</p><div className="future-items"><span>MCP <small>Direction</small></span><span>WebMCP <small>Direction</small></span></div></article>
-        </div>
-        <div className="principles-row"><span>TypeScript is first, not authoritative.</span><span>Interfaces can multiply. Semantics should not.</span><span>Adopt capabilities, not dependencies as architecture.</span></div>
-      </section>
-
-      <section className="agents-section">
-        <div className="agent-copy"><span className="section-index">06 / AI-native development</span><h2>Designed for human and agent workflows.</h2><p>Software is increasingly built and operated by people, applications and autonomous agents. Sails is evolving toward controlled, canonical interfaces for all three.</p><blockquote>Agent access should not mean agent authority.</blockquote></div>
-        <div className="tool-ecosystem"><span className="tool-caption">Emerging AI developer ecosystem</span><div className="tool-grid">{agentTools.map(([name,src])=><div className="tool-logo" key={name}>{src?<img src={src} alt=""/>:<span>{name==='Codex'?'◎':'𝕏'}</span>}<strong>{name}</strong></div>)}</div><div className="tool-funnel"><span>API</span><span>CLI</span><span>MCP</span><span>WebMCP</span></div><div className="tool-core">Canonical tool surface <small>Same protocol semantics</small></div></div>
-      </section>
-
-      <section className="truth-section" id="status">
-        <div className="truth-copy"><span className="section-index">07 / Protocol truth</span><h2>Reality before roadmap.</h2><p>Ambition matters. Evidence determines what we claim.</p></div>
-        <div className="truth-statuses"><div><i className="dot-current"/><strong>Current</strong><span>Part of the official scope today.</span></div><div><i className="dot-demo"/><strong>Demonstrated</strong><span>Backed by concrete implementation evidence.</span></div><div><i className="dot-build"/><strong>In development</strong><span>Active technical work with known boundaries.</span></div><div><i className="dot-research"/><strong>Research / Direction</strong><span>A protocol direction, not a shipped capability.</span></div></div>
-      </section>
-
-      <section className="explore-section"><span className="section-index">08 / Explore Sails</span><h2>Understand it.<br/>Build with it.<br/>Verify it.</h2><div className="explore-links"><a href="https://satsails.gitbook.io/satsails-docs" target="_blank" rel="noreferrer"><span>Understand / Learn</span><strong>GitBook</strong><ArrowUpRight/></a><a href="https://satsails.mintlify.app/concepts/protocol-primitives" target="_blank" rel="noreferrer"><span>Build / Integrate</span><strong>Developer docs</strong><ArrowUpRight/></a><a href="https://github.com/alan-schramm/Sails-Protocol" target="_blank" rel="noreferrer"><span>Source / Truth / Verify</span><strong>GitHub</strong><ArrowUpRight/></a></div></section>
-
-      <footer><a className="wordmark" href="#top"><SailsMark/><span><strong>SAILS</strong><small>PROTOCOL</small></span></a><p>Open economic coordination infrastructure.<br/><span>A reference ecosystem by the Satsails team.</span></p><span>© 2026 Sails Protocol</span></footer>
-    </main>
-  );
-}
+import {useEffect,useState} from 'react';
+import {ArrowDown,ArrowUpRight,Code2,Menu,Moon,Sun,X} from 'lucide-react';
+const wallets=[{n:'Satsails',s:'Reference implementation',a:['BTC','Lightning','USDT'],p:'nw',live:true},{n:'Wallet A',s:'Independent wallet',a:['BTC','Lightning'],p:'ne'},{n:'Wallet B',s:'Stablecoin app',a:['USDT'],p:'sw'},{n:'Wallet C',s:'Mobile wallet',a:['BTC'],p:'se'}];
+const modules=[['OpenP2P','Trade coordination','Current'],['OpenSettlement','Escrow & settlement','Demonstrated'],['OpenIdentity','Participant authority','Demonstrated'],['OpenReputation','Outcome history','In development'],['OpenProof','Verifiable evidence','In development'],['OpenLiquidity','Offer discovery','In development'],['OpenAgents','Bounded automation','Research'],['OpenFinance','Future primitives','Research']];
+function Mark(){return <span className="mark"><i/><i/></span>}
+function Wallet({w}:{w:typeof wallets[number]}){return <article className={'wallet '+w.p+(w.live?' live':'')}><div><b>{w.n[0]}</b><i/></div><strong>{w.n}</strong><small>{w.s}</small><p>{w.a.map(x=><span key={x}>{x}</span>)}</p></article>}
+export default function Home(){const[dark,setDark]=useState(true),[menu,setMenu]=useState(false),[mode,setMode]=useState<'market'|'identity'>('market'),[asset,setAsset]=useState('BTC');useEffect(()=>document.documentElement.classList.toggle('dark',dark),[dark]);return <main id="top">
+<header><a className="brand" href="#top"><Mark/><span><b>SAILS</b><small>PROTOCOL</small></span></a><nav><a href="#thesis">Thesis</a><a href="#market">OpenP2P</a><a href="#layers">Architecture</a><a href="#dev">Developers</a></nav><div className="head-actions"><button onClick={()=>setDark(!dark)} aria-label="Toggle theme">{dark?<Sun/>:<Moon/>}</button><a href="https://github.com/alan-schramm/Sails-Protocol" target="_blank"><Code2/> GitHub</a><button className="hamb" onClick={()=>setMenu(!menu)}>{menu?<X/>:<Menu/>}</button></div></header>
+{menu&&<div className="mobile-nav">{['Thesis','OpenP2P','Architecture','Developers'].map(x=><a onClick={()=>setMenu(false)} key={x} href={'#'+({OpenP2P:'market',Architecture:'layers',Developers:'dev'}[x]||x.toLowerCase())}>{x}</a>)}</div>}
+<section className="hero"><div className="hero-copy"><label><i/> OPEN ECONOMIC COORDINATION</label><h1>Markets should move.<em>People should remain sovereign.</em></h1><p>Sails is open infrastructure for interoperable P2P financial marketplaces across Bitcoin and stablecoin systems.</p><div className="actions"><a href="#market">See the market move <ArrowDown/></a><a href="https://github.com/alan-schramm/Sails-Protocol" target="_blank">Explore the source <ArrowUpRight/></a></div></div><div className="atlas"><div className="grid"/><i className="orbit o1"/><i className="orbit o2"/><i className="orbit o3"/><span className="pin p1">IDENTITY <b>01</b></span><span className="pin p2">TRANSPORT <b>02</b></span><span className="pin p3">SETTLEMENT <b>03</b></span><div className="core"><Mark/><b>SAILS</b><small>economic semantics</small></div><div className="legend"><span>● coordination</span><span>● economic action</span></div></div><div className="manifest"><span>NO TOKEN</span><span>NO DAO</span><span>NO NEW BLOCKCHAIN</span><p>Connect economic islands without becoming another island.</p></div></section>
+<section className="thesis" id="thesis"><label>01 — THE THESIS</label><div className="split"><h2>Open custody<br/>is only the beginning.</h2><p>A wallet can give you control of your keys while liquidity, reputation and market remain isolated. Sails creates shared coordination without owning the participant, interface or settlement rail.</p></div><div className="islands"><article><small>WALLET 01</small><b>Your keys</b><span>Portable</span></article><div>— MARKET GAP —</div><article><small>WALLET 02</small><b>Your market</b><span>Usually trapped</span></article></div><blockquote>“Your keys may be portable.<strong>Your economic history usually isn’t.</strong>”</blockquote></section>
+<section className="market" id="market"><div className="market-head"><label>02 — OPENP2P MARKET</label><h2>One open market.<em>Many independent wallets.</em></h2><p>Every application chooses its assets and capabilities. Sails finds the shared path and preserves the same economic meaning.</p></div><div className="controls"><div><button className={mode==='market'?'on':''} onClick={()=>setMode('market')}>Market routes</button><button className={mode==='identity'?'on':''} onClick={()=>setMode('identity')}>Portable history</button></div><div>{['BTC','Lightning','USDT'].map(x=><button key={x} className={asset===x?'on':''} onClick={()=>setAsset(x)}>{x}</button>)}</div></div><div className={'stage '+mode}><svg viewBox="0 0 1000 620" preserveAspectRatio="none"><path d="M180 135C360 135 350 310 500 310"/><path d="M820 135C640 135 650 310 500 310"/><path d="M180 485C360 485 350 310 500 310"/><path d="M820 485C640 485 650 310 500 310"/></svg>{wallets.map(w=><Wallet w={w} key={w.n}/>)}<div className="person"><div><Mark/></div><b>{mode==='market'?'SAILS OPENP2P':'PARTICIPANT'}</b><small>{mode==='market'?'Matching '+asset+' capabilities':'sail1…7f2a'}</small>{mode==='identity'&&<p><span><b>47</b> completed</span><span><b>46</b> positive</span><span><b>3</b> proofs</span></p>}</div><div className="found">● {mode==='market'?'COMPATIBLE ROUTE FOUND':'HISTORY MOVES WITH YOU'}</div></div><div className="market-foot"><p>{mode==='market'?'Applications declare capabilities. Sails coordinates the compatible interaction.':'The interface changed. The participant did not.'}</p><span>{mode==='identity'?'RESEARCH / DIRECTION':'CURRENT + DEMONSTRATED PATHS'}</span></div></section>
+<section className="layers" id="layers"><div className="section-head"><label>03 — PROGRESSIVE ARCHITECTURE</label><h2>Meaning travels down.<em>Evidence travels back.</em></h2></div><div className="stack">{[['01','INTERFACES','SDK · API · WebSocket · CLI','Applications and agents express intent.'],['02','COORDINATION SEMANTICS','Intent · Authority · Conditions · Evidence · Outcome','Sails validates transitions and preserves their meaning.'],['03','RUNTIME & MODULES','OpenP2P · OpenSettlement · OpenIdentity · OpenProof','Modules coordinate domain rules, state and delivery.'],['04','PROVIDERS & INFRASTRUCTURE','Bitcoin · Lightning · WDK · Pears','Providers execute or transport and report back.']].map(x=><article key={x[0]}><span>{x[0]}</span><div><small>{x[1]}</small><h3>{x[2]}</h3></div><p>{x[3]}</p></article>)}</div><blockquote>Sails defines the economic meaning. Runtimes coordinate the work. Providers execute it.</blockquote></section>
+<section className="modules"><div><label>04 — MODULAR BY DESIGN</label><h2>Simple at the center.<br/>Open at the edges.</h2></div><div className="module-grid">{modules.map((x,i)=><article className={i===0?'hot':''} key={x[0]}><small>0{i+1}</small><h3>{x[0]}</h3><p>{x[1]}</p><span>{x[2]}</span></article>)}</div></section>
+<section className="dev" id="dev"><label>05 — DEVELOPER INTEROPERABILITY</label><h2>Different languages.<br/>Different interfaces.<em>Same economic semantics.</em></h2><div className="dev-grid"><article><small>PROTOCOL IMPLEMENTATIONS</small><b>TypeScript</b><span>Current</span><p>Rust · Go — Direction</p></article><article><small>APPLICATION PLATFORMS</small><b>Web · React Native</b><span>Current</span><p>iOS · Android</p></article><article><small>NATIVE SDK TARGETS</small><b>Swift · Kotlin</b><span>Direction</span><p>Minimum native surface</p></article><article><small>AGENT INTERFACES</small><b>API · CLI</b><span>Current / evolving</span><p>MCP · WebMCP — Direction</p></article></div><blockquote>TypeScript is first, not authoritative. Interfaces can multiply. Semantics should not.</blockquote></section>
+<section className="cta"><Mark/><label>THE SOURCE IS THE TRUTH</label><h2>Inspect the protocol.<br/>Build the next interface.</h2><a href="https://github.com/alan-schramm/Sails-Protocol" target="_blank">Explore Sails on GitHub <ArrowUpRight/></a></section><footer><a className="brand" href="#top"><Mark/><span><b>SAILS</b><small>PROTOCOL</small></span></a><p>Open infrastructure for interoperable P2P financial marketplaces.</p><span>Built by the Satsails team · 2026</span></footer>
+</main>}

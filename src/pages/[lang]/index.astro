@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProtocolDiagram from '../../components/ProtocolDiagram.astro';
+import { copy, locales, type Locale } from '../../i18n/content';
+
+export function getStaticPaths() { return locales.map(lang => ({ params: { lang } })); }
+const lang = Astro.params.lang as Locale;
+const t = copy[lang] ?? copy.en;
+const futureSdks = ['Settlement SDK', 'Identity SDK', 'Agents SDK'];
+const roadmap = [
+  ['01', 'Protocol Foundation', t.current],
+  ['02', 'P2P Trading SDK', t.current],
+  ['03', 'Open Market Coordination', t.development],
+  ['04', 'Portable Identity & Reputation', t.development],
+  ['05', 'Open Agents', t.demonstrated],
+  ['06', 'Expanded SDK Family', t.direction],
+];
+---
+<BaseLayout lang={lang} title={`${t.title} — Economic Coordination Protocol`} description={t.bigIdea}>
+  <header class="glass-nav">
+    <a class="brand" href={`/${lang}/`}><span class="mark"><i></i><i></i></span><b>SAILS</b><small>PROTOCOL</small></a>
+    <nav>{t.nav.map((item, i) => <a href={['#protocol','#anatomy','#sdks','#roadmap'][i]}>{item}</a>)}</nav>
+    <div class="nav-actions">
+      <div class="locale" aria-label="Language selector">
+        {locales.map(locale => <a class:list={{ active: locale === lang }} href={`/${locale}/`}>{locale === 'pt-BR' ? 'PT' : locale.toUpperCase()}</a>)}
+      </div>
+      <a class="github" href="https://github.com/alan-schramm/Sails-Protocol">{t.github} ↗</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="protocol">
+      <div class="hero-copy">
+        <p class="eyebrow"><i></i>{t.eyebrow}</p>
+        <h1>{t.title}<em>Economic Coordination Protocol</em></h1>
+        <p class="lead">{t.bigIdea}</p>
+        <p>{t.hero}</p>
+        <div class="actions"><a href="#anatomy">{t.explore} ↓</a><a href="#sdks">{t.p2p} ↗</a></div>
+      </div>
+      <div class="market-orbit" aria-label="Animated open market coordination diagram">
+        <svg viewBox="0 0 600 600" aria-hidden="true">
+          <circle class="ring r1" cx="300" cy="300" r="220"/><ellipse class="ring r2" cx="300" cy="300" rx="245" ry="120"/><ellipse class="ring r3" cx="300" cy="300" rx="125" ry="250"/>
+          <path class="route" d="M105 190C220 50 390 70 495 185S520 430 390 505 125 460 100 315 170 170 300 300 460 410 495 185"/>
+          <circle class="packet" r="7"><animateMotion dur="8s" repeatCount="indefinite" path="M105 190C220 50 390 70 495 185S520 430 390 505 125 460 100 315 170 170 300 300 460 410 495 185"/></circle>
+        </svg>
+        <div class="sails-core"><span class="mark"><i></i><i></i></span><b>SAILS</b><small>economic semantics</small></div>
+        <span class="node n1">WALLET</span><span class="node n2">MARKET</span><span class="node n3">AGENT</span><span class="node n4">RAIL</span>
+      </div>
+      <div class="manifest"><span>NO TOKEN</span><span>NO DAO</span><span>NO NEW BLOCKCHAIN</span><strong>{t.mantra}</strong></div>
+    </section>
+
+    <section class="problem">
+      <p class="eyebrow">01 — {t.problemLabel}</p>
+      <div class="split"><h2>{t.problemTitle}</h2><div><p>{t.problem}</p><strong>{t.coordination}</strong></div></div>
+      <blockquote>Your keys may be portable.<br/><em>Your economic history usually isn’t.</em></blockquote>
+    </section>
+
+    <section class="anatomy" id="anatomy">
+      <div class="section-copy"><p class="eyebrow">02 — {t.anatomyLabel}</p><h2>{t.anatomyTitle}</h2><p>{t.anatomyText}</p><a href="#sdks">Explore the whole anatomy →</a></div>
+      <ProtocolDiagram />
+    </section>
+
+    <section class="sdks" id="sdks">
+      <p class="eyebrow">03 — {t.sdkLabel}</p><div class="split"><h2>{t.sdkTitle}</h2><p>{t.sdkText}</p></div>
+      <div class="sdk-grid">
+        <article class="sdk active"><div><span>01</span><b>{t.sdkStatus}</b></div><h3>{t.p2p}</h3><p>{t.p2pText}</p><ul><li>Intent & discovery</li><li>Negotiation</li><li>Capability matching</li><li>Evidence & outcomes</li></ul><a href="#roadmap">Explore SDK →</a></article>
+        {futureSdks.map((sdk, i) => <article class="sdk soon"><div><span>0{i+2}</span><b>{t.soon}</b></div><h3>{sdk}</h3><p>Focused capability surface. Final scope follows protocol evidence and release governance.</p><span class="lock">＋</span></article>)}
+      </div>
+      <p class="principle">Different languages. Different interfaces. <strong>Same economic semantics.</strong></p>
+    </section>
+
+    <section class="roadmap" id="roadmap">
+      <p class="eyebrow">04 — {t.roadmapLabel}</p><h2>{t.roadmapTitle}</h2><div class="status-key"><span>{t.current}</span><span>{t.demonstrated}</span><span>{t.development}</span><span>{t.direction}</span></div>
+      <div class="roadmap-line">{roadmap.map((item, i) => <article class:list={{ live: i < 2 }}><span>{item[0]}</span><div><h3>{item[1]}</h3><small>{item[2]}</small></div></article>)}</div>
+      <p class="reality">{t.reality}. <strong>The roadmap expands capabilities without changing the meaning of the protocol.</strong></p>
+    </section>
+  </main>
+  <footer><b>SAILS PROTOCOL</b><p>{t.bigIdea}</p><span>Built by the Satsails team</span></footer>
+</BaseLayout>

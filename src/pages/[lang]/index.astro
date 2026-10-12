@@ -19,7 +19,7 @@ const roadmap = [
 <BaseLayout lang={lang} title={`${t.title} — Economic Coordination Protocol`} description={t.bigIdea}>
   <header class="glass-nav">
     <a class="brand" href={`/${lang}/`}><span class="mark"><i></i><i></i></span><b>SAILS</b><small>PROTOCOL</small></a>
-    <nav>{t.nav.map((item, i) => <a href={['#protocol','#anatomy','#sdks','#roadmap'][i]}>{item}</a>)}</nav>
+    <nav>{t.nav.map((item, i) => <a href={[`/${lang}/protocol/`,`/${lang}/anatomy/`,`/${lang}/sdks/`,`/${lang}/roadmap/`][i]}>{item}</a>)}</nav>
     <div class="nav-actions">
       <div class="locale" aria-label="Language selector">
         {locales.map(locale => <a class:list={{ active: locale === lang }} href={`/${locale}/`}>{locale === 'pt-BR' ? 'PT' : locale.toUpperCase()}</a>)}
@@ -56,14 +56,14 @@ const roadmap = [
     </section>
 
     <section class="anatomy" id="anatomy">
-      <div class="section-copy"><p class="eyebrow">02 — {t.anatomyLabel}</p><h2>{t.anatomyTitle}</h2><p>{t.anatomyText}</p><a href="#sdks">Explore the whole anatomy →</a></div>
+      <div class="section-copy"><p class="eyebrow">02 — {t.anatomyLabel}</p><h2>{t.anatomyTitle}</h2><p>{t.anatomyText}</p><a href={`/${lang}/anatomy/`}>Explore the whole anatomy →</a></div>
       <ProtocolDiagram />
     </section>
 
     <section class="sdks" id="sdks">
       <p class="eyebrow">03 — {t.sdkLabel}</p><div class="split"><h2>{t.sdkTitle}</h2><p>{t.sdkText}</p></div>
       <div class="sdk-grid">
-        <article class="sdk active"><div><span>01</span><b>{t.sdkStatus}</b></div><h3>{t.p2p}</h3><p>{t.p2pText}</p><ul><li>Intent & discovery</li><li>Negotiation</li><li>Capability matching</li><li>Evidence & outcomes</li></ul><a href="#roadmap">Explore SDK →</a></article>
+        <article class="sdk active"><div><span>01</span><b>{t.sdkStatus}</b></div><h3>{t.p2p}</h3><p>{t.p2pText}</p><ul><li>Intent & discovery</li><li>Negotiation</li><li>Capability matching</li><li>Evidence & outcomes</li></ul><a href={`/${lang}/sdks/p2p-trading/`}>Explore SDK →</a></article>
         {futureSdks.map((sdk, i) => <article class="sdk soon"><div><span>0{i+2}</span><b>{t.soon}</b></div><h3>{sdk}</h3><p>Focused capability surface. Final scope follows protocol evidence and release governance.</p><span class="lock">＋</span></article>)}
       </div>
       <p class="principle">Different languages. Different interfaces. <strong>Same economic semantics.</strong></p>

@@ -17,7 +17,7 @@ export const copy = {
   en: {
     ...shared,
     nav: ['Protocol', 'Anatomy', 'SDKs', 'Roadmap'],
-    hero: 'Coordinate open markets across wallets, Bitcoin and stablecoin rails without creating another closed ecosystem.',
+    hero: 'Coordinating open markets across wallets, web crypto services, Bitcoin and stablecoin rails—without creating another closed ecosystem.',
     explore: 'Explore the protocol',
     problemLabel: 'THE PROBLEM',
     problemTitle: 'Open custody is only the beginning.',
@@ -38,7 +38,7 @@ export const copy = {
   'pt-BR': {
     ...shared,
     nav: ['Protocolo', 'Anatomia', 'SDKs', 'Roadmap'],
-    hero: 'Coordene mercados abertos entre wallets, Bitcoin e trilhos de stablecoins sem criar outro ecossistema fechado.',
+    hero: 'Coordenando mercados abertos entre wallets, serviços cripto na web, Bitcoin e trilhos de stablecoins — sem criar outro ecossistema fechado.',
     explore: 'Explorar o protocolo',
     problemLabel: 'O PROBLEMA',
     problemTitle: 'Custódia aberta é apenas o começo.',
@@ -59,7 +59,7 @@ export const copy = {
   es: {
     ...shared,
     nav: ['Protocolo', 'Anatomía', 'SDKs', 'Roadmap'],
-    hero: 'Coordina mercados abiertos entre wallets, Bitcoin y redes de stablecoins sin crear otro ecosistema cerrado.',
+    hero: 'Coordinando mercados abiertos entre wallets, servicios cripto web, Bitcoin y redes de stablecoins, sin crear otro ecosistema cerrado.',
     explore: 'Explorar el protocolo',
     problemLabel: 'EL PROBLEMA',
     problemTitle: 'La custodia abierta es solo el comienzo.',

@@ -19,7 +19,7 @@ const roadmap = [
 <BaseLayout lang={lang} title={`${t.title} — Economic Coordination Protocol`} description={t.bigIdea}>
   <header class="glass-nav">
     <a class="brand" href={`/${lang}/`}><span class="mark"><i></i><i></i></span><b>SAILS</b><small>PROTOCOL</small></a>
-    <nav>{t.nav.map((item, i) => <a href={[`/${lang}/protocol/`,`/${lang}/anatomy/`,`/${lang}/sdks/`,`/${lang}/roadmap/`][i]}>{item}</a>)}</nav>
+    <nav><a href={`/${lang}/`}>Home</a><a href={`/${lang}/sdks/`}>SDK</a><a href={`/${lang}/case-studies/`}>{lang==='pt-BR'?'Casos de estudo':lang==='es'?'Casos de estudio':'Case studies'}</a><a href={`https://sails-protocol-blog.netlify.app/${lang}/`}>Blog</a><a href={`/${lang}/safety-center/`}>Safety Center</a></nav>
     <div class="nav-actions">
       <div class="locale" aria-label="Language selector">
         {locales.map(locale => <a class:list={{ active: locale === lang }} href={`/${locale}/`}>{locale === 'pt-BR' ? 'PT' : locale.toUpperCase()}</a>)}
@@ -31,9 +31,9 @@ const roadmap = [
   <main>
     <section class="hero" id="protocol">
       <div class="hero-copy">
-        <p class="eyebrow"><i></i>{t.eyebrow}</p>
+        <p class="eyebrow">{t.eyebrow}</p>
         <h1>{t.title}<em>Economic Coordination Protocol</em></h1>
-        <p class="lead">{t.bigIdea}</p>
+        <p class="lead">Open infrastructure for building interoperable P2P financial marketplaces.</p>
         <p>{t.hero}</p>
         <div class="actions"><a href="#anatomy">{t.explore} ↓</a><a href="#sdks">{t.p2p} ↗</a></div>
       </div>
@@ -41,7 +41,11 @@ const roadmap = [
         <svg viewBox="0 0 600 600" aria-hidden="true">
           <circle class="ring r1" cx="300" cy="300" r="220"/><ellipse class="ring r2" cx="300" cy="300" rx="245" ry="120"/><ellipse class="ring r3" cx="300" cy="300" rx="125" ry="250"/>
           <path class="route" d="M105 190C220 50 390 70 495 185S520 430 390 505 125 460 100 315 170 170 300 300 460 410 495 185"/>
-          <circle class="packet" r="7"><animateMotion dur="8s" repeatCount="indefinite" path="M105 190C220 50 390 70 495 185S520 430 390 505 125 460 100 315 170 170 300 300 460 410 495 185"/></circle>
+          <circle class="packet packet-orange" r="7"><animateMotion dur="8s" repeatCount="indefinite" path="M105 190C220 50 390 70 495 185S520 430 390 505 125 460 100 315 170 170 300 300 460 410 495 185"/></circle>
+          <circle class="packet packet-blue" r="6"><animateMotion dur="10s" begin="-2s" repeatCount="indefinite" path="M495 185C390 70 220 50 105 190S80 430 210 505 475 460 500 315 430 170 300 300 140 410 105 190"/></circle>
+          <circle class="packet packet-green" r="5"><animateMotion dur="12s" begin="-5s" repeatCount="indefinite" path="M300 50C470 80 520 230 440 350S210 530 120 400 110 130 300 50"/></circle>
+          <circle class="packet packet-violet" r="5"><animateMotion dur="9s" begin="-4s" repeatCount="indefinite" path="M90 300C130 120 350 80 500 210S480 500 300 520 70 450 90 300"/></circle>
+          <circle class="packet packet-white" r="4"><animateMotion dur="7s" begin="-3s" repeatCount="indefinite" path="M300 90C190 140 170 330 300 510 430 330 410 140 300 90"/></circle>
         </svg>
         <div class="sails-core"><span class="mark"><i></i><i></i></span><b>SAILS</b><small>economic semantics</small></div>
         <span class="node n1">WALLET</span><span class="node n2">MARKET</span><span class="node n3">AGENT</span><span class="node n4">RAIL</span>
@@ -72,8 +76,8 @@ const roadmap = [
     <section class="roadmap" id="roadmap">
       <p class="eyebrow">04 — {t.roadmapLabel}</p><h2>{t.roadmapTitle}</h2><div class="status-key"><span>{t.current}</span><span>{t.demonstrated}</span><span>{t.development}</span><span>{t.direction}</span></div>
       <div class="roadmap-line">{roadmap.map((item, i) => <article class:list={{ live: i < 2 }}><span>{item[0]}</span><div><h3>{item[1]}</h3><small>{item[2]}</small></div></article>)}</div>
-      <p class="reality">{t.reality}. <strong>The roadmap expands capabilities without changing the meaning of the protocol.</strong></p>
+      <p class="reality">{t.reality}. <strong>The roadmap expands capabilities without changing the meaning of the protocol.</strong></p><a class="more-link" href={`/${lang}/roadmap/`}>{lang==='pt-BR'?'Ver roadmap completo':lang==='es'?'Ver roadmap completo':'View full roadmap'} →</a>
     </section>
   </main>
-  <footer><b>SAILS PROTOCOL</b><p>{t.bigIdea}</p><span>Built by the Satsails team</span></footer>
+  <footer><b>SAILS PROTOCOL</b><p>{t.bigIdea}</p><div class="socials"><a aria-label="X" href="https://x.com/">𝕏</a><a aria-label="LinkedIn" href="https://www.linkedin.com/">in</a><a class="github-social" href="https://github.com/sails-protocol/sails-protocol-website"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .8a11.4 11.4 0 0 0-3.6 22.2c.6.1.8-.2.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.5-1.4-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.6.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.5.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.8 5.4-5.5 5.7.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6A11.4 11.4 0 0 0 12 .8Z"/></svg>GitHub</a></div></footer>
 </BaseLayout>

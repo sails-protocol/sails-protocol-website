@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from './SiteHeader.astro';
+import SiteFooter from './SiteFooter.astro';
+import type { Locale } from '../i18n/content';
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+const content = {
+  en: {
+    eyebrow:'FIRST DEVELOPER PRODUCT', title:'Sails P2P Trading SDK',
+    intro:'Add interoperable P2P market coordination to a wallet, fintech or web platform while preserving its keys, signing stack, settlement choices and user experience.',
+    problemLabel:'THE MARKET PROBLEM', shiftLabel:'THE SHIFT', flowLabel:'P2P TRADING FLOW', integrationLabel:'INTEGRATION', boundariesLabel:'BOUNDARIES', marketLabel:'OPEN MARKET PARTICIPATION', docs:'Documentation',
+    problem:'A wallet can hold portable keys and still remain inside an isolated market.',
+    problemText:'Today, offers, counterparties, negotiation and economic history are commonly confined to each application. Every new integration rebuilds discovery, messaging, evidence and settlement coordination around another private market.',
+    shift:'From an isolated feature to an open market surface.',
+    shiftText:'The SDK gives applications a shared way to express intent, discover compatible opportunities, negotiate terms, match capabilities and record attributable outcomes. Participating interfaces can reach a broader coordination surface without surrendering custody or product identity.',
+    visualTitle:'One SDK. A complete coordination flow.',
+    visualText:'Sails coordinates the economic flow. Wallets and providers keep control of signing and execution.',
+    implement:'What the integrator implements',
+    implementText:'Adopt the smallest correct surface for the product. Keep the existing wallet stack and connect the capabilities the application chooses to support.',
+    boundaries:'Clear boundaries',
+    boundaryText:'The SDK does not become a wallet, exchange, bank, liquidity provider or settlement network.',
+    liquidity:'A path toward shared market liquidity',
+    liquidityText:'Each conformant wallet or service can publish and discover compatible opportunities across participating market surfaces. Liquidity remains supplied by participants and providers. Sails makes that liquidity discoverable and negotiable through common semantics.',
+    close:'Keep the wallet. Open the market.', steps:['Install the SDK','Choose supported capabilities','Connect wallet and provider adapters','Build the product interface'], nots:['NOT A WALLET','NOT AN EXCHANGE','NOT A BANK','NOT A SETTLEMENT RAIL']
+  },
+  'pt-BR': {
+    eyebrow:'PRIMEIRO PRODUTO PARA DESENVOLVEDORES', title:'Sails P2P Trading SDK',
+    intro:'Adicione coordenação de mercado P2P interoperável a uma wallet, fintech ou plataforma web, preservando chaves, assinatura, opções de liquidação e experiência do usuário.',
+    problemLabel:'O PROBLEMA DE MERCADO', shiftLabel:'A MUDANÇA', flowLabel:'FLUXO DE TRADING P2P', integrationLabel:'INTEGRAÇÃO', boundariesLabel:'LIMITES', marketLabel:'PARTICIPAÇÃO NO MERCADO ABERTO', docs:'Documentação',
+    problem:'Uma wallet pode ter chaves portáteis e ainda operar dentro de um mercado isolado.',
+    problemText:'Hoje, ofertas, contrapartes, negociação e histórico econômico costumam ficar presos em cada aplicação. Cada nova integração reconstrói descoberta, mensageria, evidências e coordenação de liquidação ao redor de outro mercado privado.',
+    shift:'De uma função isolada para uma superfície de mercado aberta.',
+    shiftText:'O SDK oferece uma forma compartilhada de expressar intenção, descobrir oportunidades compatíveis, negociar termos, combinar capacidades e registrar resultados atribuíveis. Interfaces participantes podem alcançar uma superfície maior de coordenação sem abrir mão da custódia ou da identidade do produto.',
+    visualTitle:'Um SDK. Um fluxo completo de coordenação.',
+    visualText:'O Sails coordena o fluxo econômico. Wallets e provedores mantêm o controle da assinatura e da execução.',
+    implement:'O que o integrador implementa',
+    implementText:'Adote a menor superfície correta para o produto. Mantenha a infraestrutura atual da wallet e conecte apenas as capacidades que a aplicação escolher suportar.',
+    boundaries:'Limites claros',
+    boundaryText:'O SDK não se torna wallet, exchange, banco, provedor de liquidez ou rede de liquidação.',
+    liquidity:'Um caminho para a liquidez de mercado compartilhada',
+    liquidityText:'Cada wallet ou serviço compatível pode publicar e descobrir oportunidades entre superfícies de mercado participantes. A liquidez continua sendo fornecida pelos participantes e provedores. O Sails torna essa liquidez descobrível e negociável por meio de semânticas comuns.',
+    close:'Mantenha a wallet. Abra o mercado.', steps:['Instale o SDK','Escolha as capacidades suportadas','Conecte adaptadores de wallet e provedores','Construa a interface do produto'], nots:['NÃO É WALLET','NÃO É EXCHANGE','NÃO É BANCO','NÃO É TRILHO DE LIQUIDAÇÃO']
+  },
+  es: {
+    eyebrow:'PRIMER PRODUCTO PARA DESARROLLADORES', title:'Sails P2P Trading SDK',
+    intro:'Añade coordinación de mercado P2P interoperable a una wallet, fintech o plataforma web, preservando claves, firma, opciones de liquidación y experiencia de usuario.',
+    problemLabel:'EL PROBLEMA DE MERCADO', shiftLabel:'EL CAMBIO', flowLabel:'FLUJO DE TRADING P2P', integrationLabel:'INTEGRACIÓN', boundariesLabel:'LÍMITES', marketLabel:'PARTICIPACIÓN EN EL MERCADO ABIERTO', docs:'Documentación',
+    problem:'Una wallet puede tener claves portátiles y seguir operando dentro de un mercado aislado.',
+    problemText:'Hoy, ofertas, contrapartes, negociación e historial económico suelen quedar atrapados en cada aplicación. Cada nueva integración reconstruye descubrimiento, mensajería, evidencias y coordinación de liquidación alrededor de otro mercado privado.',
+    shift:'De una función aislada a una superficie de mercado abierta.',
+    shiftText:'El SDK ofrece una forma compartida de expresar intención, descubrir oportunidades compatibles, negociar términos, combinar capacidades y registrar resultados atribuibles. Las interfaces participantes pueden alcanzar una superficie mayor de coordinación sin ceder custodia ni identidad de producto.',
+    visualTitle:'Un SDK. Un flujo completo de coordinación.',
+    visualText:'Sails coordina el flujo económico. Wallets y proveedores mantienen el control de firma y ejecución.',
+    implement:'Lo que implementa el integrador',
+    implementText:'Adopta la menor superficie correcta para el producto. Mantén la infraestructura actual de la wallet y conecta solo las capacidades que la aplicación decida soportar.',
+    boundaries:'Límites claros',
+    boundaryText:'El SDK no se convierte en wallet, exchange, banco, proveedor de liquidez o red de liquidación.',
+    liquidity:'Un camino hacia la liquidez de mercado compartida',
+    liquidityText:'Cada wallet o servicio compatible puede publicar y descubrir oportunidades entre superficies de mercado participantes. La liquidez sigue siendo aportada por participantes y proveedores. Sails hace que esa liquidez sea descubrible y negociable mediante semánticas comunes.',
+    close:'Mantén la wallet. Abre el mercado.', steps:['Instala el SDK','Elige las capacidades compatibles','Conecta adaptadores de wallet y proveedores','Construye la interfaz del producto'], nots:['NO ES WALLET','NO ES EXCHANGE','NO ES BANCO','NO ES RED DE LIQUIDACIÓN']
+  }
+}[lang];
+const steps = lang==='pt-BR' ? ['Intenção','Descoberta','Negociação','Compatibilidade','Evidências'] : lang==='es' ? ['Intención','Descubrimiento','Negociación','Compatibilidad','Evidencias'] : ['Intent','Discovery','Negotiation','Matching','Evidence'];
+const rails = ['Bitcoin','Lightning','Spark','Liquid','Stablecoins'];
+const visual = lang==='pt-BR' ? {private:'MERCADO PRIVADO',shared:'SEMÂNTICAS COMPARTILHADAS',app:'APLICAÇÃO',web:'Plataforma web',discovery:'DESCOBERTA'} : lang==='es' ? {private:'MERCADO PRIVADO',shared:'SEMÁNTICAS COMPARTIDAS',app:'APLICACIÓN',web:'Plataforma web',discovery:'DESCUBRIMIENTO'} : {private:'PRIVATE MARKET',shared:'SHARED SEMANTICS',app:'APPLICATION',web:'Web platform',discovery:'DISCOVERY'};
+---
+<BaseLayout lang={lang} title={`${content.title} | Sails Protocol`} description={content.intro}>
+  <SiteHeader lang={lang} path="sdks/p2p-trading" />
+  <main class="p2p-page">
+    <section class="p2p-hero"><p class="eyebrow">{content.eyebrow}</p><h1>{content.title}</h1><p>{content.intro}</p><div class="p2p-tags"><span>NON-CUSTODIAL</span><span>MODULAR</span><span>INTEROPERABLE</span></div></section>
+
+    <section class="p2p-problem"><div><p class="eyebrow">{content.problemLabel}</p><h2>{content.problem}</h2><p>{content.problemText}</p></div><div class="island-visual" aria-label="Isolated markets becoming an open coordination network"><div class="island"><span>WALLET A</span><i></i><small>{visual.private}</small></div><div class="island"><span>WALLET B</span><i></i><small>{visual.private}</small></div><div class="island"><span>WEB SERVICE</span><i></i><small>{visual.private}</small></div><div class="network-core"><b>SAILS</b><small>{visual.shared}</small></div></div></section>
+
+    <section class="p2p-shift"><p class="eyebrow">{content.shiftLabel}</p><div><h2>{content.shift}</h2><p>{content.shiftText}</p></div></section>
+
+    <section class="p2p-flow"><div class="flow-heading"><div><p class="eyebrow">{content.flowLabel}</p><h2>{content.visualTitle}</h2></div><p>{content.visualText}</p></div><div class="sdk-flow-visual">
+      <div class="flow-entry"><article><small>{visual.app}</small><b>Wallet</b></article><article><small>{visual.app}</small><b>Fintech</b></article><article><small>{visual.app}</small><b>{visual.web}</b></article></div>
+      <div class="flow-arrow" aria-hidden="true">→</div>
+      <div class="sdk-core"><span>Sails</span><b>P2P Trading SDK</b><div>{steps.map((step,i)=><small><i>0{i+1}</i>{step}</small>)}</div></div>
+      <div class="flow-arrow" aria-hidden="true">→</div>
+      <div class="flow-rails">{rails.map(rail=><span>{rail}</span>)}</div>
+      <svg viewBox="0 0 1200 420" aria-hidden="true"><path d="M120 85C330 50 350 205 520 205"/><path d="M120 205H520"/><path d="M120 325C330 360 350 205 520 205"/><path d="M680 205C820 205 860 65 1080 65"/><path d="M680 205C850 205 860 135 1080 135"/><path d="M680 205H1080"/><path d="M680 205C850 205 860 275 1080 275"/><path d="M680 205C820 205 860 345 1080 345"/></svg>
+    </div></section>
+
+    <section class="p2p-details"><article><p class="eyebrow">{content.integrationLabel}</p><h2>{content.implement}</h2><p>{content.implementText}</p><ol>{content.steps.map(step=><li>{step}</li>)}</ol></article><article><p class="eyebrow">{content.boundariesLabel}</p><h2>{content.boundaries}</h2><p>{content.boundaryText}</p><div class="not-list">{content.nots.map(item=><span>{item}</span>)}</div></article></section>
+
+    <section class="liquidity-story"><div><p class="eyebrow">{content.marketLabel}</p><h2>{content.liquidity}</h2><p>{content.liquidityText}</p></div><div class="liquidity-network" aria-hidden="true"><b>{visual.discovery}</b>{['WALLET','MARKET','FINTECH','WEB','AGENT','PROVIDER'].map((name,i)=><span class={`q${i+1}`}>{name}</span>)}<i></i><i></i><i></i></div></section>
+    <section class="p2p-close"><p>{content.close}</p><a href={`/${lang}/developers/documentation/`}>{content.docs} →</a></section>
+  </main>
+  <SiteFooter />
+</BaseLayout>

@@ -34,10 +34,11 @@ const suffix = path ? `/${path}` : '/';
     <a href={`/${lang}/case-studies/`}>{labels.cases}</a>
     <a href={`https://sails-protocol-blog.netlify.app/${lang}/`}>Blog</a>
     <a href={`/${lang}/safety-center/`}>Safety Center</a>
+    <a class="mobile-get-started" href={`/${lang}/portal/login/`}>Get started</a>
   </nav>
   <div class="nav-actions">
     <div class="locale" aria-label="Language selector">{(['en','pt-BR','es'] as const).map(locale => <a class:list={{active:locale===lang}} href={`/${locale}${suffix}`}>{locale==='pt-BR'?'PT':locale.toUpperCase()}</a>)}</div>
-    <a class="github" href="https://github.com/sails-protocol/sails-protocol-website">GitHub ↗</a>
+    <a class="github get-started" href={`/${lang}/portal/login/`}>Get started</a>
   </div>
 </header>
 <script>

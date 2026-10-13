@@ -1,0 +1,56 @@
+---
+import type { Locale } from '../i18n/content';
+interface Props { lang: Locale; path?: string }
+const { lang, path = '' } = Astro.props;
+const labels = lang === 'pt-BR'
+  ? { product:'Produto', developers:'Desenvolvedores', cases:'Casos de estudo', sdk:'SDK', ui:'UI Kit', market:'Sails Market', node:'Sails Node', extension:'Open Extension', docs:'Documentação' }
+  : lang === 'es'
+  ? { product:'Producto', developers:'Desarrolladores', cases:'Casos de estudio', sdk:'SDK', ui:'UI Kit', market:'Sails Market', node:'Sails Node', extension:'Open Extension', docs:'Documentación' }
+  : { product:'Product', developers:'Developers', cases:'Case studies', sdk:'SDK', ui:'UI Kit', market:'Sails Market', node:'Sails Node', extension:'Open Extension', docs:'Documentation' };
+const suffix = path ? `/${path}` : '/';
+---
+<header class="glass-nav">
+  <a class="brand" href={`/${lang}/`} aria-label="Sails Protocol home"><span class="mark"><i></i><i></i></span><b>SAILS</b><small>PROTOCOL</small></a>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation"><span></span><span></span></button>
+  <nav id="primary-navigation" aria-label="Primary navigation">
+    <a href={`/${lang}/`}>Home</a>
+    <div class="nav-group">
+      <button type="button" aria-haspopup="true">{labels.product}<span>⌄</span></button>
+      <div class="submenu">
+        <a href={`/${lang}/sdks/`}><b>{labels.sdk}</b><small>Developer products</small></a>
+        <a href={`/${lang}/products/ui-kit/`}><b>{labels.ui}</b><small>Coming soon</small></a>
+        <a href={`/${lang}/products/sails-market/`}><b>{labels.market}</b><small>Reference platform</small></a>
+        <a href={`/${lang}/products/sails-node/`}><b>{labels.node}</b><small>Coming soon</small></a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <button type="button" aria-haspopup="true">{labels.developers}<span>⌄</span></button>
+      <div class="submenu">
+        <a href={`/${lang}/developers/open-extension/`}><b>{labels.extension}</b><small>Capability model</small></a>
+        <a href={`/${lang}/developers/documentation/`}><b>{labels.docs}</b><small>Docs and WebMCP</small></a>
+        <a href="https://github.com/sails-protocol/sails-protocol-website"><b>GitHub</b><small>Source of truth ↗</small></a>
+      </div>
+    </div>
+    <a href={`/${lang}/case-studies/`}>{labels.cases}</a>
+    <a href={`https://sails-protocol-blog.netlify.app/${lang}/`}>Blog</a>
+    <a href={`/${lang}/safety-center/`}>Safety Center</a>
+  </nav>
+  <div class="nav-actions">
+    <div class="locale" aria-label="Language selector">{(['en','pt-BR','es'] as const).map(locale => <a class:list={{active:locale===lang}} href={`/${locale}${suffix}`}>{locale==='pt-BR'?'PT':locale.toUpperCase()}</a>)}</div>
+    <a class="github" href="https://github.com/sails-protocol/sails-protocol-website">GitHub ↗</a>
+  </div>
+</header>
+<script>
+  document.querySelectorAll('.glass-nav').forEach(header => {
+    const toggle = header.querySelector('.menu-toggle');
+    const nav = header.querySelector('nav');
+    toggle?.addEventListener('click', () => {
+      const open = header.classList.toggle('menu-open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+    nav?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      header.classList.remove('menu-open');
+      toggle?.setAttribute('aria-expanded', 'false');
+    }));
+  });
+</script>

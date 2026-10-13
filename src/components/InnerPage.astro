@@ -1,26 +1,27 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from './SiteHeader.astro';
+import SiteFooter from './SiteFooter.astro';
 import type { Locale } from '../i18n/content';
 interface Card { title: string; text: string; status?: string }
 interface Props { lang: Locale; eyebrow: string; title: string; intro: string; cards: Card[]; statement: string; diagram?: 'flow'|'kernel'|'sdk'|'network'; }
 const { lang, eyebrow, title, intro, cards, statement, diagram='flow' } = Astro.props;
-const nav = lang === 'pt-BR' ? ['Protocolo','Anatomia','SDKs','Roadmap'] : lang === 'es' ? ['Protocolo','Anatomía','SDKs','Roadmap'] : ['Protocol','Anatomy','SDKs','Roadmap'];
+const path = Astro.url.pathname.split('/').slice(2).filter(Boolean).join('/');
+const isRoadmap = eyebrow.includes('ROADMAP');
 ---
 <BaseLayout lang={lang} title={`${title} | Sails Protocol`} description={intro}>
-  <header class="glass-nav">
-    <a class="brand" href={`/${lang}/`}><span class="mark"><i></i><i></i></span><b>SAILS</b><small>PROTOCOL</small></a>
-    <nav><a href={`/${lang}/`}>Home</a><a href={`/${lang}/sdks/`}>SDK</a><a href={`/${lang}/case-studies/`}>{lang==='pt-BR'?'Casos de estudo':lang==='es'?'Casos de estudio':'Case studies'}</a><a href={`https://sails-protocol-blog.netlify.app/${lang}/`}>Blog</a><a href={`/${lang}/safety-center/`}>Safety Center</a></nav>
-    <div class="nav-actions"><div class="locale"><a href={`/en/${Astro.url.pathname.split('/').slice(2).join('/')}`}>EN</a><a class:list={{active:lang==='pt-BR'}} href={`/pt-BR/${Astro.url.pathname.split('/').slice(2).join('/')}`}>PT</a><a href={`/es/${Astro.url.pathname.split('/').slice(2).join('/')}`}>ES</a></div><a class="github" href="https://github.com/sails-protocol/sails-protocol-website">GitHub ↗</a></div>
-  </header>
+  <SiteHeader lang={lang} path={path} />
   <main class="inner">
     <section class="inner-hero"><p class="eyebrow">{eyebrow}</p><h1>{title}</h1><p>{intro}</p></section>
-    <section class={`inner-diagram ${diagram}`} aria-label={`${title} visual model`}>
+    {isRoadmap ? <section class="roadmap-visual" aria-label={`${title} timeline`}>
+      <div class="roadmap-signal"><span></span><b>NOW</b></div><div class="roadmap-track">{cards.map((card,i)=><div class:list={['milestone',{done:i===0,current:i===1||i===2}]}><i></i><small>0{i+1}</small><b>{card.title}</b></div>)}</div>
+    </section> : <section class={`inner-diagram ${diagram}`} aria-label={`${title} visual model`}>
       <div class="diagram-center"><span class="mark"><i></i><i></i></span><b>SAILS</b><small>economic semantics</small></div>
       {cards.slice(0,4).map((card,i)=><article class={`visual-card v${i+1}`}><span>0{i+1}</span><b>{card.title}</b><small>{card.status ?? 'PROTOCOL LAYER'}</small></article>)}
       <svg viewBox="0 0 1000 560" aria-hidden="true"><path d="M190 120C350 120 340 280 500 280"/><path d="M810 120C650 120 660 280 500 280"/><path d="M190 440C350 440 340 280 500 280"/><path d="M810 440C650 440 660 280 500 280"/></svg>
-    </section>
-    <section class:list={['inner-grid',{roadmapGrid:eyebrow.includes('ROADMAP')}]}>{cards.map((card,i)=><article><span>0{i+1}</span>{card.status&&<small class:list={{planned:card.status.includes('PLANNED')||card.status.includes('PLANEJADO')||card.status.includes('PLANIFICADO'),progress:card.status.includes('PROGRESS')||card.status.includes('PROGRESSO')||card.status.includes('CURSO'),delivered:card.status.includes('DELIVERED')||card.status.includes('ENTREGUE')||card.status.includes('ENTREGADO')}}>{card.status}</small>}<h2>{card.title}</h2><p>{card.text}</p></article>)}</section>
+    </section>}
+    <section class:list={['inner-grid',{roadmapGrid:isRoadmap}]}>{cards.map((card,i)=><article><span>0{i+1}</span>{card.status&&<small class:list={{planned:card.status.includes('PLANNED')||card.status.includes('PLANEJADO')||card.status.includes('PLANIFICADO'),progress:card.status.includes('PROGRESS')||card.status.includes('PROGRESSO')||card.status.includes('CURSO'),delivered:card.status.includes('DELIVERED')||card.status.includes('ENTREGUE')||card.status.includes('ENTREGADO')}}>{card.status}</small>}<h2>{card.title}</h2><p>{card.text}</p>{card.title==='WebMCP'&&<a class="card-link" href={`/${lang}/developers/webmcp/`}>Explore WebMCP →</a>}</article>)}</section>
     <section class="inner-statement"><p>{statement}</p><a href={`/${lang}/`}>← Sails Protocol</a></section>
   </main>
-  <footer><b>SAILS PROTOCOL</b><p>Economic Coordination Protocol for building interoperable P2P financial marketplaces.</p><div class="socials"><a aria-label="X" href="https://x.com/">𝕏</a><a aria-label="LinkedIn" href="https://www.linkedin.com/">in</a><a class="github-social" href="https://github.com/sails-protocol/sails-protocol-website"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .8a11.4 11.4 0 0 0-3.6 22.2c.6.1.8-.2.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.5-1.4-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.6.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.5.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.8 5.4-5.5 5.7.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6A11.4 11.4 0 0 0 12 .8Z"/></svg>GitHub</a></div></footer>
+  <SiteFooter />
 </BaseLayout>

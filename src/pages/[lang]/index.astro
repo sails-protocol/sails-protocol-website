@@ -16,7 +16,7 @@ const roadmap = [
   ['06', 'Expanded SDK Family', t.direction],
 ];
 ---
-<BaseLayout lang={lang} title={`${t.title} — Economic Coordination Protocol`} description={t.bigIdea}>
+<BaseLayout lang={lang} title={`${t.title} | Economic Coordination Protocol`} description={t.bigIdea}>
   <header class="glass-nav">
     <a class="brand" href={`/${lang}/`}><span class="mark"><i></i><i></i></span><b>SAILS</b><small>PROTOCOL</small></a>
     <nav><a href={`/${lang}/`}>Home</a><a href={`/${lang}/sdks/`}>SDK</a><a href={`/${lang}/case-studies/`}>{lang==='pt-BR'?'Casos de estudo':lang==='es'?'Casos de estudio':'Case studies'}</a><a href={`https://sails-protocol-blog.netlify.app/${lang}/`}>Blog</a><a href={`/${lang}/safety-center/`}>Safety Center</a></nav>
@@ -59,18 +59,18 @@ const roadmap = [
     </section>
 
     <section class="problem">
-      <p class="eyebrow">01 — {t.problemLabel}</p>
+      <p class="eyebrow">01 / {t.problemLabel}</p>
       <div class="split"><h2>{t.problemTitle}</h2><div><p>{t.problem}</p><strong>{t.coordination}</strong></div></div>
       <blockquote>Your keys may be portable.<br/><em>Your economic history usually isn’t.</em></blockquote>
     </section>
 
     <section class="anatomy" id="anatomy">
-      <div class="section-copy"><p class="eyebrow">02 — {t.anatomyLabel}</p><h2>{t.anatomyTitle}</h2><p>{t.anatomyText}</p><a href={`/${lang}/anatomy/`}>Explore the whole anatomy →</a></div>
+      <div class="section-copy"><p class="eyebrow">02 / {t.anatomyLabel}</p><h2>{t.anatomyTitle}</h2><p>{t.anatomyText}</p><a href={`/${lang}/anatomy/`}>Explore the whole anatomy →</a></div>
       <ProtocolDiagram />
     </section>
 
     <section class="sdks" id="sdks">
-      <p class="eyebrow">03 — {t.sdkLabel}</p><div class="split"><h2>{t.sdkTitle}</h2><p>{t.sdkText}</p></div>
+      <p class="eyebrow">03 / {t.sdkLabel}</p><div class="split"><h2>{t.sdkTitle}</h2><p>{t.sdkText}</p></div>
       <div class="sdk-grid">
         <article class="sdk active"><div><span>01</span><b>{t.sdkStatus}</b></div><h3>{t.p2p}</h3><p>{t.p2pText}</p><ul><li>Intent & discovery</li><li>Negotiation</li><li>Capability matching</li><li>Evidence & outcomes</li></ul><a href={`/${lang}/sdks/p2p-trading/`}>Explore SDK →</a></article>
         {futureSdks.map((sdk, i) => <article class="sdk soon"><div><span>0{i+2}</span><b>{t.soon}</b></div><h3>{sdk}</h3><p>Focused capability surface. Final scope follows protocol evidence and release governance.</p><span class="lock">＋</span></article>)}
@@ -79,13 +79,13 @@ const roadmap = [
     </section>
 
     <section class="modules-family" id="modules">
-      <div class="modules-intro"><p class="eyebrow">04 — PROTOCOL MODULES</p><h2>{lang==='pt-BR'?'Módulos organizam capacidades. SDKs entregam produtos para desenvolvedores.':lang==='es'?'Los módulos organizan capacidades. Los SDKs entregan productos para desarrolladores.':'Modules organize capabilities. SDKs deliver developer products.'}</h2><p>{lang==='pt-BR'?'Um SDK pode combinar vários módulos. Um módulo não representa automaticamente um produto ou pacote independente.':lang==='es'?'Un SDK puede combinar varios módulos. Un módulo no representa automáticamente un producto o paquete independiente.':'One SDK may compose several modules. A module does not automatically represent a standalone product or package.'}</p></div>
+      <div class="modules-intro"><p class="eyebrow">04 / PROTOCOL MODULES</p><h2>{lang==='pt-BR'?'Módulos organizam capacidades. SDKs entregam produtos para desenvolvedores.':lang==='es'?'Los módulos organizan capacidades. Los SDKs entregan productos para desarrolladores.':'Modules organize capabilities. SDKs deliver developer products.'}</h2><p>{lang==='pt-BR'?'Um SDK pode combinar vários módulos. Um módulo não representa automaticamente um produto ou pacote independente.':lang==='es'?'Un SDK puede combinar varios módulos. Un módulo no representa automáticamente un producto o paquete independiente.':'One SDK may compose several modules. A module does not automatically represent a standalone product or package.'}</p></div>
       <div class="module-family-grid">{[['OpenP2P','Trade coordination','CURRENT'],['OpenSettlement','Settlement capabilities','DEMONSTRATED'],['OpenIdentity','Participants & control','DEMONSTRATED'],['OpenReputation','Attributable history','IN DEVELOPMENT'],['OpenProof','Evidence & claims','IN DEVELOPMENT'],['OpenLiquidity','Offers & discovery','IN DEVELOPMENT'],['OpenAgents','Bounded agents','RESEARCH'],['OpenFinance','Future coordination','RESEARCH']].map((m,i)=><article class:list={{primary:i===0}}><span>0{i+1}</span><small>{m[2]}</small><h3>{m[0]}</h3><p>{m[1]}</p></article>)}</div>
       <div class="module-rule"><span>PRIMITIVE</span><b>≠</b><span>MODULE</span><b>≠</b><span>PROVIDER</span><b>≠</b><span>PRODUCT</span></div>
     </section>
 
     <section class="roadmap" id="roadmap">
-      <p class="eyebrow">05 — {t.roadmapLabel}</p><h2>{t.roadmapTitle}</h2><div class="status-key"><span>{t.current}</span><span>{t.demonstrated}</span><span>{t.development}</span><span>{t.direction}</span></div>
+      <p class="eyebrow">05 / {t.roadmapLabel}</p><h2>{t.roadmapTitle}</h2><div class="status-key"><span>{t.current}</span><span>{t.demonstrated}</span><span>{t.development}</span><span>{t.direction}</span></div>
       <div class="roadmap-line">{roadmap.map((item, i) => <article class:list={{ live: i < 2 }}><span>{item[0]}</span><div><h3>{item[1]}</h3><small>{item[2]}</small></div></article>)}</div>
       <p class="reality">{t.reality}. <strong>The roadmap expands capabilities without changing the meaning of the protocol.</strong></p><a class="more-link" href={`/${lang}/roadmap/`}>{lang==='pt-BR'?'Ver roadmap completo':lang==='es'?'Ver roadmap completo':'View full roadmap'} →</a>
     </section>

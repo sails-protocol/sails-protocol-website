@@ -17,7 +17,7 @@ export const copy = {
   en: {
     ...shared,
     nav: ['Protocol', 'Anatomy', 'SDKs', 'Roadmap'],
-    hero: 'A family of SDKs, protocol modules, open extensions and independent nodes coordinating markets across wallets, web crypto services, Bitcoin and stablecoin rails—without creating another closed ecosystem.',
+    hero: 'A family of SDKs, protocol modules, open extensions and independent nodes coordinating markets across wallets, web crypto services, Bitcoin and stablecoin rails, without creating another closed ecosystem.',
     explore: 'Explore the protocol',
     problemLabel: 'THE PROBLEM',
     problemTitle: 'Open custody is only the beginning.',
@@ -38,7 +38,7 @@ export const copy = {
   'pt-BR': {
     ...shared,
     nav: ['Protocolo', 'Anatomia', 'SDKs', 'Roadmap'],
-    hero: 'Uma família de SDKs, módulos do protocolo, extensões abertas e nodes independentes coordenando mercados entre wallets, serviços cripto na web, Bitcoin e trilhos de stablecoins — sem criar outro ecossistema fechado.',
+    hero: 'Uma família de SDKs, módulos do protocolo, extensões abertas e nodes independentes coordenando mercados entre wallets, serviços cripto na web, Bitcoin e trilhos de stablecoins, sem criar outro ecossistema fechado.',
     explore: 'Explorar o protocolo',
     problemLabel: 'O PROBLEMA',
     problemTitle: 'Custódia aberta é apenas o começo.',

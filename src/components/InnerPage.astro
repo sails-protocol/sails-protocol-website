@@ -6,7 +6,7 @@ interface Props { lang: Locale; eyebrow: string; title: string; intro: string; c
 const { lang, eyebrow, title, intro, cards, statement, diagram='flow' } = Astro.props;
 const nav = lang === 'pt-BR' ? ['Protocolo','Anatomia','SDKs','Roadmap'] : lang === 'es' ? ['Protocolo','Anatomía','SDKs','Roadmap'] : ['Protocol','Anatomy','SDKs','Roadmap'];
 ---
-<BaseLayout lang={lang} title={`${title} — Sails Protocol`} description={intro}>
+<BaseLayout lang={lang} title={`${title} | Sails Protocol`} description={intro}>
   <header class="glass-nav">
     <a class="brand" href={`/${lang}/`}><span class="mark"><i></i><i></i></span><b>SAILS</b><small>PROTOCOL</small></a>
     <nav><a href={`/${lang}/`}>Home</a><a href={`/${lang}/sdks/`}>SDK</a><a href={`/${lang}/case-studies/`}>{lang==='pt-BR'?'Casos de estudo':lang==='es'?'Casos de estudio':'Case studies'}</a><a href={`https://sails-protocol-blog.netlify.app/${lang}/`}>Blog</a><a href={`/${lang}/safety-center/`}>Safety Center</a></nav>

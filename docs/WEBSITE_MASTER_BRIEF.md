@@ -1,4 +1,4 @@
-# Sails Protocol Website — Master Brief
+# Sails Protocol Website: Master Brief
 
 Status: approved direction for implementation  
 Source of truth: GitHub  
@@ -21,7 +21,7 @@ The narrative must answer, in this order:
 
 The primary positioning is:
 
-> **Sails Protocol — Economic Coordination Protocol.**
+> **Sails Protocol: Economic Coordination Protocol.**
 
 Supporting statement:
 
@@ -56,7 +56,7 @@ Homepage
 ├─ Anatomy
 ├─ SDKs
 │  ├─ P2P Trading SDK
-│  └─ Future SDKs — Coming soon
+│  └─ Future SDKs: Coming soon
 ├─ Integrations
 ├─ Roadmap
 ├─ Developers
@@ -67,7 +67,7 @@ The homepage introduces the whole protocol. The P2P Trading SDK has a dedicated 
 
 ## Homepage sequence
 
-1. Hero: Sails Protocol — Economic Coordination Protocol
+1. Hero: Sails Protocol, Economic Coordination Protocol
 2. The problem: open custody does not automatically create an open market
 3. The thesis: coordination is the product
 4. Protocol anatomy overview
@@ -88,14 +88,14 @@ Roadmap items are organized by capability and evidence rather than speculative d
 
 Every item must use one of these states:
 
-- **Current** — implemented and available in the current source of truth
-- **Demonstrated** — working in a reference implementation or validated path
-- **In Development** — actively being built but not yet generally available
-- **Research / Direction** — architectural direction or active research
+- **Current:** implemented and available in the current source of truth
+- **Demonstrated:** working in a reference implementation or validated path
+- **In Development:** actively being built but not yet generally available
+- **Research / Direction:** architectural direction or active research
 
 Roadmap tracks:
 
-### Foundation — Current
+### Foundation: Current
 
 - Semantic Kernel and protocol principles
 - Sails Core
@@ -103,7 +103,7 @@ Roadmap tracks:
 - TypeScript-first interfaces
 - Adapter and provider boundaries
 
-### First Developer Product — Current / In Development
+### First Developer Product: Current / In Development
 
 - Sails P2P Trading SDK
 - P2P trade lifecycle
@@ -112,7 +112,7 @@ Roadmap tracks:
 - Satsails Wallet as a reference implementation
 - Documentation, examples and test environments
 
-### Open Market Coordination — In Development
+### Open Market Coordination: In Development
 
 - Interoperable offer discovery
 - Negotiation across independent applications
@@ -120,7 +120,7 @@ Roadmap tracks:
 - Attributable economic history
 - Additional rails, assets and providers
 
-### Portable Identity and Reputation — In Development / Direction
+### Portable Identity and Reputation: In Development / Direction
 
 - Participant identity based on proofs of control
 - Re-verifiable economic events
@@ -128,7 +128,7 @@ Roadmap tracks:
 - Pubky and Nostr interoperability paths
 - Local policies for reputation interpretation
 
-### Open Agents — Demonstrated / In Development
+### Open Agents: Demonstrated / In Development
 
 - QVAC as a local intelligence provider
 - Risk analysis and offer screening
@@ -137,7 +137,7 @@ Roadmap tracks:
 - Explicit AgentGrant and authority boundaries
 - API, CLI, MCP and WebMCP interfaces
 
-### SDK Family — Direction
+### SDK Family: Direction
 
 - Additional focused SDK products
 - Future Rust and Go implementations
@@ -145,7 +145,7 @@ Roadmap tracks:
 - Web, React Native, iOS and Android surfaces
 - The same economic semantics across implementations
 
-### Expanded Economic Coordination — Research / Direction
+### Expanded Economic Coordination: Research / Direction
 
 - OpenSettlement
 - OpenLiquidity

@@ -53,6 +53,11 @@ const roadmap = [
       <div class="manifest"><span>NO TOKEN</span><span>NO DAO</span><span>NO NEW BLOCKCHAIN</span><strong>{t.mantra}</strong></div>
     </section>
 
+    <section class="ai-explore" aria-labelledby="ai-title">
+      <div><p class="eyebrow">EXPLORE WITH AI</p><h2 id="ai-title">{lang==='pt-BR'?'Explore o Sails com o assistente que você já usa.':lang==='es'?'Explora Sails con el asistente que ya utilizas.':'Explore Sails with the assistant you already use.'}</h2><p>{lang==='pt-BR'?'Contexto estruturado a partir da documentação e do código do protocolo.':lang==='es'?'Contexto estructurado a partir de la documentación y el código del protocolo.':'Structured context drawn from protocol documentation and source.'}</p></div>
+      <div class="ai-tools"><a href={`/${lang}/explore-ai/`}><b>Claude</b><span>IN DEVELOPMENT</span></a><a href={`/${lang}/explore-ai/`}><b>Codex</b><span>AVAILABLE PATH</span></a><a href={`/${lang}/explore-ai/`}><b>Gemini</b><span>COMING SOON</span></a><a href={`/${lang}/explore-ai/`}><b>Grok</b><span>COMING SOON</span></a></div>
+    </section>
+
     <section class="problem">
       <p class="eyebrow">01 — {t.problemLabel}</p>
       <div class="split"><h2>{t.problemTitle}</h2><div><p>{t.problem}</p><strong>{t.coordination}</strong></div></div>
@@ -73,8 +78,14 @@ const roadmap = [
       <p class="principle">Different languages. Different interfaces. <strong>Same economic semantics.</strong></p>
     </section>
 
+    <section class="modules-family" id="modules">
+      <div class="modules-intro"><p class="eyebrow">04 — PROTOCOL MODULES</p><h2>{lang==='pt-BR'?'Módulos organizam capacidades. SDKs entregam produtos para desenvolvedores.':lang==='es'?'Los módulos organizan capacidades. Los SDKs entregan productos para desarrolladores.':'Modules organize capabilities. SDKs deliver developer products.'}</h2><p>{lang==='pt-BR'?'Um SDK pode combinar vários módulos. Um módulo não representa automaticamente um produto ou pacote independente.':lang==='es'?'Un SDK puede combinar varios módulos. Un módulo no representa automáticamente un producto o paquete independiente.':'One SDK may compose several modules. A module does not automatically represent a standalone product or package.'}</p></div>
+      <div class="module-family-grid">{[['OpenP2P','Trade coordination','CURRENT'],['OpenSettlement','Settlement capabilities','DEMONSTRATED'],['OpenIdentity','Participants & control','DEMONSTRATED'],['OpenReputation','Attributable history','IN DEVELOPMENT'],['OpenProof','Evidence & claims','IN DEVELOPMENT'],['OpenLiquidity','Offers & discovery','IN DEVELOPMENT'],['OpenAgents','Bounded agents','RESEARCH'],['OpenFinance','Future coordination','RESEARCH']].map((m,i)=><article class:list={{primary:i===0}}><span>0{i+1}</span><small>{m[2]}</small><h3>{m[0]}</h3><p>{m[1]}</p></article>)}</div>
+      <div class="module-rule"><span>PRIMITIVE</span><b>≠</b><span>MODULE</span><b>≠</b><span>PROVIDER</span><b>≠</b><span>PRODUCT</span></div>
+    </section>
+
     <section class="roadmap" id="roadmap">
-      <p class="eyebrow">04 — {t.roadmapLabel}</p><h2>{t.roadmapTitle}</h2><div class="status-key"><span>{t.current}</span><span>{t.demonstrated}</span><span>{t.development}</span><span>{t.direction}</span></div>
+      <p class="eyebrow">05 — {t.roadmapLabel}</p><h2>{t.roadmapTitle}</h2><div class="status-key"><span>{t.current}</span><span>{t.demonstrated}</span><span>{t.development}</span><span>{t.direction}</span></div>
       <div class="roadmap-line">{roadmap.map((item, i) => <article class:list={{ live: i < 2 }}><span>{item[0]}</span><div><h3>{item[1]}</h3><small>{item[2]}</small></div></article>)}</div>
       <p class="reality">{t.reality}. <strong>The roadmap expands capabilities without changing the meaning of the protocol.</strong></p><a class="more-link" href={`/${lang}/roadmap/`}>{lang==='pt-BR'?'Ver roadmap completo':lang==='es'?'Ver roadmap completo':'View full roadmap'} →</a>
     </section>

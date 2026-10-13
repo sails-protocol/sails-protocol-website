@@ -48,7 +48,7 @@ const roadmap = [
 
     <section class="ai-explore" aria-labelledby="ai-title">
       <div><p class="eyebrow">EXPLORE WITH AI</p><h2 id="ai-title">{lang==='pt-BR'?'Explore o Sails com o assistente que você já usa.':lang==='es'?'Explora Sails con el asistente que ya utilizas.':'Explore Sails with the assistant you already use.'}</h2><p>{lang==='pt-BR'?'Contexto estruturado a partir da documentação e do código do protocolo.':lang==='es'?'Contexto estructurado a partir de la documentación y el código del protocolo.':'Structured context drawn from protocol documentation and source.'}</p></div>
-      <div class="ai-tools">{[['claude','Claude'],['codex','Codex'],['gemini','Gemini'],['grok','Grok']].map(([icon,name])=><a href={`/${lang}/explore-ai/`}><span class="ai-logo-frame"><img class={`ai-logo-${icon}`} src={`/logos/${icon}.svg`} alt=""/></span><b>{name}</b><span>ACTIVE</span></a>)}</div>
+      <div class="ai-tools">{[['claude','Claude'],['codex','Codex'],['gemini','Gemini'],['grok','Grok']].map(([icon,name])=><a href={`/${lang}/explore-ai/`}><span class="ai-logo-frame"><img class={`ai-logo-${icon}`} src={`/logos/${icon}.svg`} alt=""/></span><b>{name}</b><span class="ai-status">ACTIVE</span></a>)}</div>
     </section>
 
     <section class="problem">

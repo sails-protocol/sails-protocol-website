@@ -11,7 +11,10 @@ const isRoadmap = eyebrow.includes('ROADMAP');
 const cardLinks:Record<string,string[]> = {
   sdks:['sdks/p2p-trading','','',''],
   developers:['developers/documentation','sdks','developers/open-extension','developers/webmcp'],
-  'developers/documentation':['anatomy','sdks/p2p-trading','developers/open-extension','developers/webmcp']
+  'developers/documentation':['anatomy','sdks/p2p-trading','developers/open-extension','developers/webmcp'],
+  'developers/open-extension':['developers/documentation','safety-center','anatomy','integrations'],
+  'developers/webmcp':['developers/documentation','developers/open-extension','safety-center','explore-ai'],
+  'safety-center':['anatomy','developers/open-extension','integrations','developers/documentation']
 };
 const links = cardLinks[path] ?? [];
 const labels = lang==='pt-BR'
@@ -19,12 +22,18 @@ const labels = lang==='pt-BR'
   : lang==='es'
   ? {explore:'Explorar',source:'Abrir fuente canónica',visual:'modelo visual',timeline:'línea de tiempo',now:'AHORA'}
   : {explore:'Explore',source:'Open canonical source',visual:'visual model',timeline:'timeline',now:'NOW'};
-const showSource = path==='sdks'||path==='developers'||path==='developers/documentation';
+const showSource = path==='sdks'||path==='developers'||path==='developers/documentation'||path==='developers/open-extension'||path==='developers/webmcp'||path==='safety-center';
+const maturity:Record<string,Record<Locale,string>> = {
+  'developers/open-extension':{en:'EXTENSION MODEL','pt-BR':'MODELO DE EXTENSÃO',es:'MODELO DE EXTENSIÓN'},
+  'developers/webmcp':{en:'RESEARCH / DIRECTION','pt-BR':'PESQUISA / DIREÇÃO',es:'INVESTIGACIÓN / DIRECCIÓN'},
+  'safety-center':{en:'CURRENT PRINCIPLES','pt-BR':'PRINCÍPIOS ATUAIS',es:'PRINCIPIOS ACTUALES'}
+};
+const pageMaturity = maturity[path]?.[lang];
 ---
 <BaseLayout lang={lang} title={`${title} | Sails Protocol`} description={intro}>
   <SiteHeader lang={lang} path={path} />
   <main class="inner">
-    <section class="inner-hero"><p class="eyebrow">{eyebrow}</p><h1>{title}</h1><p>{intro}</p></section>
+    <section class="inner-hero"><p class="eyebrow">{eyebrow}</p><h1>{title}</h1><p>{intro}</p>{pageMaturity&&<div class="page-maturity"><i></i><span>{pageMaturity}</span></div>}</section>
     {isRoadmap ? <section class="roadmap-visual" aria-label={`${title} ${labels.timeline}`}>
       <div class="roadmap-signal"><span></span><b>{labels.now}</b></div><div class="roadmap-track">{cards.map((card,i)=><div class:list={['milestone',{done:i===0,current:i===1||i===2}]}><i></i><small>0{i+1}</small><b>{card.title}</b></div>)}</div>
     </section> : <section class={`inner-diagram ${diagram}`} aria-label={`${title} ${labels.visual}`}>

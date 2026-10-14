@@ -45,11 +45,6 @@ const roadmap = [
       <div class="manifest"><span>{t.manifest[0]}</span><span>{t.manifest[1]}</span><span>{t.manifest[2]}</span><strong>{t.mantra}</strong></div>
     </section>
 
-    <section class="ai-explore" aria-labelledby="ai-title">
-      <div><p class="eyebrow">EXPLORE WITH AI</p><h2 id="ai-title">{lang==='pt-BR'?'Explore o Sails com o assistente que você já usa.':lang==='es'?'Explora Sails con el asistente que ya utilizas.':'Explore Sails with the assistant you already use.'}</h2><p>{lang==='pt-BR'?'Contexto estruturado a partir da documentação e do código do protocolo.':lang==='es'?'Contexto estructurado a partir de la documentación y el código del protocolo.':'Structured context drawn from protocol documentation and source.'}</p></div>
-      <div class="ai-tools">{[['claude','Claude'],['codex','Codex'],['gemini','Gemini'],['grok','Grok']].map(([icon,name])=><a href={`/${lang}/explore-ai/`}><span class="ai-logo-frame"><img class={`ai-logo-${icon}`} src={`/logos/${icon}.svg`} alt=""/></span><b>{name}</b><span class="ai-status">ACTIVE</span></a>)}</div>
-    </section>
-
     <section class="problem">
       <p class="eyebrow">01 / {t.problemLabel}</p>
       <div class="split"><h2>{t.problemTitle}</h2><div><p>{t.problem}</p><strong>{t.coordination}</strong></div></div>
@@ -136,6 +131,19 @@ const roadmap = [
         <div class="case-copy"><div><span>0{index + 1}</span><small>{item[1]}</small></div><h3>{item[0]}</h3><p>{item[2]}</p><ul>{item[3].map(point => <li>✓ {point}</li>)}</ul></div>
       </article>)}</div>
       <div class="cases-footer"><strong>{t.casesBoundary}</strong><a href={`/${lang}/case-studies/`}>{t.casesCta} →</a></div>
+    </section>
+
+    <section class="interfaces-section" id="interfaces">
+      <div class="interfaces-intro"><p class="eyebrow">08 / {t.interfacesLabel}</p><h2>{t.interfacesTitle}</h2><p>{t.interfacesText}</p></div>
+      <div class="interface-groups">
+        <div><p class="family-label">{t.currentInterfacesLabel}</p><div class="interface-cards current-interfaces">{t.currentInterfaces.map((item,index) => <article><span>0{index + 1}</span><b>{item[0]}</b><small>{item[1]}</small></article>)}</div></div>
+        <div><p class="family-label">{t.evolvingInterfacesLabel}</p><div class="interface-cards evolving-interfaces">{t.evolvingInterfaces.map((item,index) => <article><span>0{index + 1}</span><b>{item[0]}</b><small>{item[1]}</small></article>)}</div></div>
+      </div>
+      <p class="agent-principle">{t.agentPrinciple}</p>
+      <div class="ai-explore" aria-labelledby="ai-title">
+        <div><p class="eyebrow">{t.aiLabel}</p><h3 id="ai-title">{t.aiTitle}</h3><p>{t.aiText}</p><a href={`/${lang}/developers/`}>{t.interfacesCta} →</a></div>
+        <div class="ai-tools">{[['claude','Claude'],['codex','Codex'],['gemini','Gemini'],['grok','Grok']].map(([icon,name])=><a href={`/${lang}/explore-ai/`}><span class="ai-logo-frame"><img class={`ai-logo-${icon}`} src={`/logos/${icon}.svg`} alt=""/></span><b>{name}</b><span class="ai-status">{t.aiStatus}</span></a>)}</div>
+      </div>
     </section>
 
     <section class="node-offer">

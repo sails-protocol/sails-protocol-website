@@ -121,6 +121,51 @@
   .evidence-footer{align-items:flex-start;flex-direction:column}
 }
 
+/* Homepage developer and agent interfaces */
+.interfaces-section{padding:125px max(22px,6vw);border-top:1px solid var(--line);background:#0b1016}
+.interfaces-intro{display:grid;grid-template-columns:1.1fr .9fr;gap:3vw 8vw}
+.interfaces-intro .eyebrow{grid-column:1/-1}
+.interfaces-intro h2{margin:16px 0;font-size:clamp(40px,5vw,72px);line-height:.96;letter-spacing:-.055em}
+.interfaces-intro>p:last-child{align-self:end;color:var(--muted);font-size:16px}
+.interface-groups{margin-top:62px;display:grid;grid-template-columns:.85fr 1.15fr;gap:28px}
+.interface-groups .family-label{margin-top:0}
+.interface-cards{display:grid;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.current-interfaces{grid-template-columns:repeat(3,1fr)}
+.evolving-interfaces{grid-template-columns:repeat(4,1fr)}
+.interface-cards article{min-height:150px;padding:17px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface);display:flex;flex-direction:column}
+.interface-cards article span{color:var(--blue);font-size:8px;font-weight:750}
+.interface-cards article b{margin-top:auto;font-size:12px}
+.interface-cards article small{margin-top:7px;color:var(--muted);font-size:8px;line-height:1.4}
+.current-interfaces article{background:linear-gradient(145deg,rgba(85,216,155,.05),transparent 65%),var(--surface)}
+.current-interfaces article span{color:var(--green)}
+.evolving-interfaces article{opacity:.72}
+.agent-principle{margin:65px 0;color:var(--text);font-size:clamp(30px,4.2vw,66px);font-weight:570;line-height:1;letter-spacing:-.055em}
+.interfaces-section .ai-explore{padding:0;border:1px solid var(--line);gap:0;align-items:stretch;background:var(--canvas)}
+.interfaces-section .ai-explore>div:first-child{padding:32px;border-right:1px solid var(--line)}
+.interfaces-section .ai-explore h3{margin:16px 0;font-size:clamp(30px,3.2vw,48px);line-height:1;letter-spacing:-.045em}
+.interfaces-section .ai-explore>div:first-child>p:last-of-type{color:var(--muted);font-size:13px}
+.interfaces-section .ai-explore>div:first-child>a{display:inline-block;margin-top:20px;color:var(--orange);font-size:10px;font-weight:800}
+.interfaces-section .ai-tools{border-top:0}
+
+@media(max-width:1050px){
+  .interface-groups{grid-template-columns:1fr}
+}
+@media(max-width:900px){
+  .interfaces-intro{grid-template-columns:1fr}
+  .interfaces-intro .eyebrow{grid-column:auto}
+  .interfaces-section .ai-explore{grid-template-columns:1fr}
+  .interfaces-section .ai-explore>div:first-child{border-right:0;border-bottom:1px solid var(--line)}
+}
+@media(max-width:700px){
+  .interfaces-section{padding:85px 18px}
+  .current-interfaces{grid-template-columns:1fr}
+  .evolving-interfaces{grid-template-columns:1fr 1fr}
+  .interface-cards article{min-height:115px}
+  .agent-principle{margin:48px 0}
+  .interfaces-section .ai-explore{padding:0;gap:0}
+  .interfaces-section .ai-explore>div:first-child{padding:24px 18px}
+}
+
 /* Homepage reference implementations */
 .reference-cases{padding:125px max(22px,6vw);border-top:1px solid var(--line)}
 .cases-intro{display:grid;grid-template-columns:1.1fr .9fr;gap:3vw 8vw}

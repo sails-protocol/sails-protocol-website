@@ -54,13 +54,25 @@ const roadmap = [
     <section class="problem">
       <p class="eyebrow">01 / {t.problemLabel}</p>
       <div class="split"><h2>{t.problemTitle}</h2><div><p>{t.problem}</p><strong>{t.coordination}</strong></div></div>
-      <blockquote>Your keys may be portable.<br/><em>Your economic history usually isn’t.</em></blockquote>
+      <div class="market-islands" role="img" aria-label={t.islandsLabel}>
+        {t.islandNames.map((name, index) => <article>
+          <div><span>0{index + 1}</span><b>{name}</b><i aria-hidden="true"></i></div>
+          <div class="island-surfaces">{t.islandSurfaces.map(surface => <small>{surface}</small>)}</div>
+        </article>)}
+      </div>
+      <p class="islands-caption">{t.islandsLabel}</p>
+      <blockquote>{t.problemQuote[0]}<br/><em>{t.problemQuote[1]}</em></blockquote>
     </section>
 
     <section class="market-participation">
-      <div class="participation-copy"><p class="eyebrow">{lang==='pt-BR'?'DE ILHAS A UM MERCADO ABERTO':lang==='es'?'DE ISLAS A UN MERCADO ABIERTO':'FROM ISLANDS TO AN OPEN MARKET'}</p><h2>{lang==='pt-BR'?'Cada interface alcança apenas o seu mercado. O Sails cria uma linguagem para coordenar entre eles.':lang==='es'?'Cada interfaz alcanza solo su mercado. Sails crea un lenguaje para coordinar entre ellos.':'Each interface reaches only its own market. Sails creates a language for coordinating across them.'}</h2><p>{lang==='pt-BR'?'Wallets, fintechs, serviços cripto web, agentes e provedores podem publicar e descobrir oportunidades compatíveis em uma superfície compartilhada. A liquidez continua pertencendo aos participantes. O protocolo coordena como ela é descoberta, negociada e comprovada.':lang==='es'?'Wallets, fintechs, servicios cripto web, agentes y proveedores pueden publicar y descubrir oportunidades compatibles en una superficie compartida. La liquidez sigue perteneciendo a los participantes. El protocolo coordina cómo se descubre, negocia y comprueba.':'Wallets, fintechs, web crypto services, agents and providers can publish and discover compatible opportunities across a shared surface. Liquidity still belongs to participants. The protocol coordinates how it is discovered, negotiated and evidenced.'}</p></div>
-      <div class="participation-visual" aria-label="Open market participation model"><div class="open-core"><b>OPEN MARKET</b><small>SAILS SEMANTICS</small></div>{[['WALLET','p1'],['FINTECH','p2'],['WEB SERVICE','p3'],['AGENT','p4'],['PROVIDER','p5'],['MARKET','p6']].map(([name,position])=><span class={position}>{name}</span>)}<svg viewBox="0 0 600 480" aria-hidden="true"><circle cx="300" cy="240" r="165"/><path d="M300 45V190M520 135 350 215M520 345 350 265M300 435V290M80 345 250 265M80 135 250 215"/></svg></div>
-      <div class="participation-rule"><span>{lang==='pt-BR'?'O Sails não fornece liquidez.':lang==='es'?'Sails no suministra liquidez.':'Sails does not supply liquidity.'}</span><strong>{lang==='pt-BR'?'Ele permite que mercados compatíveis se encontrem.':lang==='es'?'Permite que mercados compatibles se encuentren.':'It lets compatible markets find each other.'}</strong></div>
+      <div class="participation-copy"><p class="eyebrow">02 / {t.solutionLabel}</p><h2>{t.solutionTitle}</h2><p>{t.solutionText}</p></div>
+      <div class="participation-visual" role="img" aria-label={t.solutionDiagramLabel}>
+        <div class="open-core"><b>{t.solutionCore}</b><div>{t.solutionSemantics.map(item => <small>{item}</small>)}</div></div>
+        {t.solutionParticipants.map((name,index) => <span class={`p${index + 1}`}>{name}</span>)}
+        <svg viewBox="0 0 600 480" aria-hidden="true"><circle cx="300" cy="240" r="165"/><path d="M300 45V170M520 160 385 215M300 435V310M80 320 215 265"/></svg>
+      </div>
+      <p class="coordination-boundary">{t.solutionBoundary}</p>
+      <div class="participation-rule"><span>{t.solutionRule[0]}</span><strong>{t.solutionRule[1]}</strong></div>
     </section>
 
     <section class="anatomy" id="anatomy">

@@ -102,9 +102,16 @@ const roadmap = [
     </section>
 
     <section class="modules-family" id="modules">
-      <div class="modules-intro"><p class="eyebrow">04 / PROTOCOL MODULES</p><h2>{lang==='pt-BR'?'Módulos organizam capacidades. SDKs entregam produtos para desenvolvedores.':lang==='es'?'Los módulos organizan capacidades. Los SDKs entregan productos para desarrolladores.':'Modules organize capabilities. SDKs deliver developer products.'}</h2><p>{lang==='pt-BR'?'Um SDK pode combinar vários módulos. Um módulo não representa automaticamente um produto ou pacote independente.':lang==='es'?'Un SDK puede combinar varios módulos. Un módulo no representa automáticamente un producto o paquete independiente.':'One SDK may compose several modules. A module does not automatically represent a standalone product or package.'}</p></div>
-      <div class="module-family-grid">{[['OpenP2P','Trade coordination','CURRENT','⇄'],['OpenSettlement','Settlement capabilities','DEMONSTRATED','✓'],['OpenIdentity','Participants & control','DEMONSTRATED','◇'],['OpenReputation','Attributable history','IN DEVELOPMENT','★'],['OpenProof','Evidence & claims','IN DEVELOPMENT','⌁'],['OpenLiquidity','Offers & discovery','IN DEVELOPMENT','≈'],['OpenAgents','Bounded agents','RESEARCH','◎'],['OpenFinance','Future coordination','RESEARCH','＋']].map((m,i)=><article class:list={{primary:i===0}}><span>0{i+1}</span><small>{m[2]}</small><i class="module-icon" aria-hidden="true">{m[3]}</i><h3>{m[0]}</h3><p>{m[1]}</p></article>)}</div>
-      <div class="module-rule"><span>PRIMITIVE</span><b>≠</b><span>MODULE</span><b>≠</b><span>PROVIDER</span><b>≠</b><span>PRODUCT</span></div>
+      <div class="modules-intro"><p class="eyebrow">05 / {t.compositionLabel}</p><h2>{t.compositionTitle}</h2><p>{t.compositionText}</p></div>
+      <div class="composition-flow">{t.compositionFlow.map((item,index) => <><article><span>0{index + 1}</span><b>{item[0]}</b><small>{item[1]}</small></article>{index < t.compositionFlow.length - 1 && <i aria-hidden="true">↓</i>}</>)}</div>
+      <p class="family-label">{t.modulesLabel}</p>
+      <div class="module-family-grid">{t.modules.map((m,i)=><article class:list={{primary:i===0}}><span>0{i+1}</span><small>{m[2]}</small><i class="module-icon" aria-hidden="true">{m[3]}</i><h3>{m[0]}</h3><p>{m[1]}</p></article>)}</div>
+      <div class="family-lanes">
+        <div><p class="family-label">{t.sdkFamilyLabel}</p><div class="sdk-family-row">{t.sdkFamily.map((item,index) => <article class:list={{current:index===0}}><b>{item[0]}</b><small>{item[1]}</small></article>)}</div></div>
+        <div><p class="family-label">{t.implementationLabel}</p><div class="implementation-row">{t.implementations.map((item,index) => <article class:list={{first:index===0}}><b>{item[0]}</b><small>{item[1]}</small></article>)}</div></div>
+      </div>
+      <p class="composition-principle">{t.compositionPrinciple}</p>
+      <div class="module-rule">{t.compositionRule.map((item,index) => <><span>{item}</span>{index < t.compositionRule.length - 1 && <b>≠</b>}</>)}</div>
     </section>
 
     <section class="node-offer">

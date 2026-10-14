@@ -1,18 +1,54 @@
-<div class="protocol-diagram" role="img" aria-label="Sails protocol layers connect applications to infrastructure while preserving shared economic semantics">
-  <svg viewBox="0 0 800 620" aria-hidden="true">
-    <defs>
-      <linearGradient id="flow" x1="0" x2="1"><stop stop-color="#4e9cff"/><stop offset="1" stop-color="#ff8a16"/></linearGradient>
-      <filter id="glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-    </defs>
-    <path class="flow down" d="M400 90V530" />
-    <path class="flow return" d="M430 530V90" />
-    <circle class="pulse p1" cx="400" cy="160" r="5"/><circle class="pulse p2" cx="400" cy="330" r="5"/><circle class="pulse p3" cx="430" cy="460" r="5"/>
+---
+import type { Locale } from '../i18n/content';
+
+interface Props { lang?: Locale }
+const { lang = 'en' } = Astro.props;
+const content = lang === 'pt-BR' ? {
+  label: 'Camadas do Sails conectando aplicações à infraestrutura por meio de semânticas econômicas compartilhadas',
+  layers: [
+    ['Aplicações e integradores', 'Wallets · Fintechs · Mercados · Agentes'],
+    ['SDKs e superfícies de integração', 'TypeScript · API · CLI · MCP · WebMCP'],
+    ['Open Extension', 'Capacidades · Políticas · Limites · Evidências'],
+    ['Semantic Kernel', 'Transições válidas · Autoridade · Condições · Resultados'],
+    ['Pure Core · Runtime · Módulos', 'Estado puro · Eventos · Coordenação · Nodes'],
+    ['Adaptadores · Provedores · Trilhos', 'Bitcoin · Lightning · Liquid · Spark · Stablecoins'],
+  ],
+  meaning: 'significado desce', evidence: 'evidência retorna', execution: 'EXECUÇÃO EXTERNA', truth: 'SEMÂNTICA DO PROTOCOLO',
+} : lang === 'es' ? {
+  label: 'Capas de Sails conectando aplicaciones con infraestructura mediante semánticas económicas compartidas',
+  layers: [
+    ['Aplicaciones e integradores', 'Wallets · Fintechs · Mercados · Agentes'],
+    ['SDKs y superficies de integración', 'TypeScript · API · CLI · MCP · WebMCP'],
+    ['Open Extension', 'Capacidades · Políticas · Límites · Evidencia'],
+    ['Semantic Kernel', 'Transiciones válidas · Autoridad · Condiciones · Resultados'],
+    ['Pure Core · Runtime · Módulos', 'Estado puro · Eventos · Coordinación · Nodos'],
+    ['Adaptadores · Proveedores · Redes', 'Bitcoin · Lightning · Liquid · Spark · Stablecoins'],
+  ],
+  meaning: 'el significado desciende', evidence: 'la evidencia regresa', execution: 'EJECUCIÓN EXTERNA', truth: 'SEMÁNTICA DEL PROTOCOLO',
+} : {
+  label: 'Sails layers connecting applications to infrastructure through shared economic semantics',
+  layers: [
+    ['Applications & Integrators', 'Wallets · Fintechs · Markets · Agents'],
+    ['SDKs & Integration Surfaces', 'TypeScript · API · CLI · MCP · WebMCP'],
+    ['Open Extension', 'Capabilities · Policies · Boundaries · Evidence'],
+    ['Semantic Kernel', 'Valid transitions · Authority · Conditions · Outcomes'],
+    ['Pure Core · Runtime · Modules', 'Pure state · Events · Coordination · Nodes'],
+    ['Adapters · Providers · Rails', 'Bitcoin · Lightning · Liquid · Spark · Stablecoins'],
+  ],
+  meaning: 'meaning moves down', evidence: 'evidence returns', execution: 'EXTERNAL EXECUTION', truth: 'PROTOCOL SEMANTICS',
+};
+---
+<div class="protocol-diagram" role="img" aria-label={content.label}>
+  <svg viewBox="0 0 800 700" aria-hidden="true">
+    <defs><filter id="glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+    <path class="flow down" d="M70 85V615" />
+    <path class="flow return" d="M730 615V85" />
+    <circle class="pulse p1" cx="70" cy="190" r="5"/><circle class="pulse p2" cx="70" cy="410" r="5"/><circle class="pulse p3" cx="730" cy="525" r="5"/><circle class="pulse p4" cx="730" cy="290" r="5"/>
   </svg>
-  <div class="layer l1"><small>01</small><b>Applications & Integrators</b><span>Wallets · Fintechs · Marketplaces · Agents</span></div>
-  <div class="layer l2"><small>02</small><b>SDKs & Integration Surfaces</b><span>TypeScript · API · CLI · MCP · WebMCP</span></div>
-  <div class="layer l3"><small>03</small><b>Open Extension</b><span>Capabilities · Policies · Integrations</span></div>
-  <div class="layer kernel"><small>04</small><b>Semantic Kernel</b><span>Valid transitions · Attributed discretion · Settlement independence</span></div>
-  <div class="layer l4"><small>05</small><b>Core · Runtime · Nodes · Open Modules</b><span>P2P · Identity · Reputation · Settlement · Liquidity · Proof · Agents · Finance</span></div>
-  <div class="layer l5"><small>06</small><b>Adapters · Providers · Rails</b><span>Bitcoin · Lightning · Liquid · Spark · Stablecoins · External</span></div>
-  <div class="diagram-key"><span>↓ meaning</span><span>↑ evidence</span></div>
+  <span class="diagram-boundary protocol-truth">{content.truth}</span>
+  {content.layers.map((layer, index) => <div class:list={['layer', `l${index + 1}`, { kernel: index === 3 }]}>
+    <small>0{index + 1}</small><b>{layer[0]}</b><span>{layer[1]}</span>
+  </div>)}
+  <span class="diagram-boundary external-execution">{content.execution}</span>
+  <div class="diagram-key"><span>↓ {content.meaning}</span><span>↑ {content.evidence}</span></div>
 </div>

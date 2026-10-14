@@ -76,8 +76,8 @@ const roadmap = [
     </section>
 
     <section class="anatomy" id="anatomy">
-      <div class="section-copy"><p class="eyebrow">02 / {t.anatomyLabel}</p><h2>{t.anatomyTitle}</h2><p>{t.anatomyText}</p><a href={`/${lang}/anatomy/`}>Explore the whole anatomy →</a></div>
-      <ProtocolDiagram />
+      <div class="section-copy"><p class="eyebrow">03 / {t.anatomyLabel}</p><h2>{t.anatomyTitle}</h2><p>{t.anatomyText}</p><ul class="anatomy-principles">{t.anatomyPrinciples.map(item => <li>{item}</li>)}</ul><a href={`/${lang}/anatomy/`}>{t.anatomyLink} →</a></div>
+      <ProtocolDiagram lang={lang} />
     </section>
 
     <section class="sdks" id="sdks">

@@ -8,14 +8,6 @@ import { copy, locales, type Locale } from '../../i18n/content';
 export function getStaticPaths() { return locales.map(lang => ({ params: { lang } })); }
 const lang = Astro.params.lang as Locale;
 const t = copy[lang] ?? copy.en;
-const roadmap = [
-  ['01', 'Protocol Foundation', t.current],
-  ['02', 'P2P Trading SDK', t.current],
-  ['03', 'Open Market Coordination', t.development],
-  ['04', 'Portable Identity & Reputation', t.development],
-  ['05', 'Open Agents', t.demonstrated],
-  ['06', 'Expanded SDK Family', t.direction],
-];
 ---
 <BaseLayout lang={lang} title={`${t.title} | ${t.protocolDescriptor}`} description={t.bigIdea}>
   <SiteHeader lang={lang} />
@@ -146,15 +138,16 @@ const roadmap = [
       </div>
     </section>
 
-    <section class="node-offer">
-      <div class="node-offer-copy"><p class="eyebrow">SAILS NODE</p><h2>{lang==='pt-BR'?'Participe da infraestrutura. Opere um node com a sua própria identidade.':lang==='es'?'Participa en la infraestructura. Opera un nodo con tu propia identidad.':'Participate in the infrastructure. Operate a node with your own identity.'}</h2><p>{lang==='pt-BR'?'Um Sails Node permite que organizações operem capacidades, conectem provedores e participem da coordenação aberta sob limites explícitos. Escolha hospedar sua própria infraestrutura, usar uma operação gerenciada ou lançar uma experiência white-label.':lang==='es'?'Un Sails Node permite que organizaciones operen capacidades, conecten proveedores y participen en la coordinación abierta bajo límites explícitos. Elige alojar tu propia infraestructura, usar una operación administrada o lanzar una experiencia white-label.':'A Sails Node lets organizations operate capabilities, connect providers and participate in open coordination under explicit boundaries. Choose to host your own infrastructure, use a managed operation or launch a white-label experience.'}</p><div class="actions"><a href={`/${lang}/portal/login/`}>Get started</a><a href={`/${lang}/products/sails-node/`}>{lang==='pt-BR'?'Explorar Sails Node':lang==='es'?'Explorar Sails Node':'Explore Sails Node'} →</a></div></div>
-      <div><div class="node-paths"><article><span>01</span><small>SELF-HOSTED</small><h3>{lang==='pt-BR'?'Seu node, sua infraestrutura':lang==='es'?'Tu nodo, tu infraestructura':'Your node, your infrastructure'}</h3><p>{lang==='pt-BR'?'Execute onde preferir e mantenha controle operacional.':lang==='es'?'Ejecuta donde prefieras y conserva el control operativo.':'Run it where you choose and retain operational control.'}</p></article><article><span>02</span><small>MANAGED</small><h3>{lang==='pt-BR'?'Operação assistida':lang==='es'?'Operación asistida':'Assisted operation'}</h3><p>{lang==='pt-BR'?'Configure capacidades com suporte de implantação e observabilidade.':lang==='es'?'Configura capacidades con soporte de implementación y observabilidad.':'Configure capabilities with deployment and observability support.'}</p></article><article><span>03</span><small>WHITE-LABEL</small><h3>{lang==='pt-BR'?'Sua marca sobre Sails':lang==='es'?'Tu marca sobre Sails':'Your brand on Sails'}</h3><p>{lang==='pt-BR'?'Uma experiência configurável para produtos e operações próprias.':lang==='es'?'Una experiencia configurable para productos y operaciones propias.':'A configurable experience for your own products and operations.'}</p></article></div><div class="node-benefits">{(lang==='pt-BR'?['Escolha de infraestrutura','Capacidades modulares','Identidade própria','Observabilidade operacional']:lang==='es'?['Elección de infraestructura','Capacidades modulares','Identidad propia','Observabilidad operativa']:['Infrastructure choice','Modular capabilities','Your own identity','Operational observability']).map(item=><span>✓ {item}</span>)}</div></div>
+    <section class="roadmap" id="roadmap">
+      <div class="roadmap-heading"><div><p class="eyebrow">09 / {t.roadmapLabel}</p><h2>{t.roadmapTitle}</h2></div><p>{t.roadmapText}</p></div>
+      <div class="status-key"><span>{t.current}</span><span>{t.demonstrated}</span><span>{t.development}</span><span>{t.direction}</span></div>
+      <div class="roadmap-line">{t.roadmapItems.map((item, i) => <article class={`status-${item[2]}`}><span>0{i + 1}</span><div><h3>{item[0]}</h3><p>{item[1]}</p><small>{item[3]}</small></div></article>)}</div>
+      <p class="reality">{t.reality}. <strong>{t.roadmapClosing}</strong></p><a class="more-link" href={`/${lang}/roadmap/`}>{t.roadmapCta} →</a>
     </section>
 
-    <section class="roadmap" id="roadmap">
-      <p class="eyebrow">05 / {t.roadmapLabel}</p><h2>{t.roadmapTitle}</h2><div class="status-key"><span>{t.current}</span><span>{t.demonstrated}</span><span>{t.development}</span><span>{t.direction}</span></div>
-      <div class="roadmap-line">{roadmap.map((item, i) => <article class:list={{ live: i < 2 }}><span>{item[0]}</span><div><h3>{item[1]}</h3><small>{item[2]}</small></div></article>)}</div>
-      <p class="reality">{t.reality}. <strong>The roadmap expands capabilities without changing the meaning of the protocol.</strong></p><a class="more-link" href={`/${lang}/roadmap/`}>{lang==='pt-BR'?'Ver roadmap completo':lang==='es'?'Ver roadmap completo':'View full roadmap'} →</a>
+    <section class="final-cta">
+      <p class="eyebrow">{t.finalLabel}</p><h2>{t.finalTitle}</h2><p>{t.finalText}</p>
+      <div class="final-routes">{t.finalRoutes.map((item,index) => <a href={index === 0 ? `/${lang}/sdks/p2p-trading/` : index === 1 ? 'https://github.com/alan-schramm/Sails-Protocol' : `/${lang}/anatomy/`}><span>0{index + 1} / {item[0]}</span><b>{item[1]}</b><small>{item[2]} →</small></a>)}</div>
     </section>
   </main>
   <SiteFooter description={t.bigIdea} />

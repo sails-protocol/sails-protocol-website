@@ -8,20 +8,32 @@ interface Props { lang: Locale; eyebrow: string; title: string; intro: string; c
 const { lang, eyebrow, title, intro, cards, statement, diagram='flow' } = Astro.props;
 const path = Astro.url.pathname.split('/').slice(2).filter(Boolean).join('/');
 const isRoadmap = eyebrow.includes('ROADMAP');
+const cardLinks:Record<string,string[]> = {
+  sdks:['sdks/p2p-trading','','',''],
+  developers:['developers/documentation','sdks','developers/open-extension','developers/webmcp'],
+  'developers/documentation':['anatomy','sdks/p2p-trading','developers/open-extension','developers/webmcp']
+};
+const links = cardLinks[path] ?? [];
+const labels = lang==='pt-BR'
+  ? {explore:'Explorar',source:'Abrir fonte canônica',visual:'modelo visual',timeline:'linha do tempo',now:'AGORA'}
+  : lang==='es'
+  ? {explore:'Explorar',source:'Abrir fuente canónica',visual:'modelo visual',timeline:'línea de tiempo',now:'AHORA'}
+  : {explore:'Explore',source:'Open canonical source',visual:'visual model',timeline:'timeline',now:'NOW'};
+const showSource = path==='sdks'||path==='developers'||path==='developers/documentation';
 ---
 <BaseLayout lang={lang} title={`${title} | Sails Protocol`} description={intro}>
   <SiteHeader lang={lang} path={path} />
   <main class="inner">
     <section class="inner-hero"><p class="eyebrow">{eyebrow}</p><h1>{title}</h1><p>{intro}</p></section>
-    {isRoadmap ? <section class="roadmap-visual" aria-label={`${title} timeline`}>
-      <div class="roadmap-signal"><span></span><b>NOW</b></div><div class="roadmap-track">{cards.map((card,i)=><div class:list={['milestone',{done:i===0,current:i===1||i===2}]}><i></i><small>0{i+1}</small><b>{card.title}</b></div>)}</div>
-    </section> : <section class={`inner-diagram ${diagram}`} aria-label={`${title} visual model`}>
+    {isRoadmap ? <section class="roadmap-visual" aria-label={`${title} ${labels.timeline}`}>
+      <div class="roadmap-signal"><span></span><b>{labels.now}</b></div><div class="roadmap-track">{cards.map((card,i)=><div class:list={['milestone',{done:i===0,current:i===1||i===2}]}><i></i><small>0{i+1}</small><b>{card.title}</b></div>)}</div>
+    </section> : <section class={`inner-diagram ${diagram}`} aria-label={`${title} ${labels.visual}`}>
       <div class="diagram-center"><span class="mark"><i></i><i></i></span><b>SAILS</b><small>economic semantics</small></div>
       {cards.slice(0,4).map((card,i)=><article class={`visual-card v${i+1}`}><span>0{i+1}</span><b>{card.title}</b><small>{card.status ?? 'PROTOCOL LAYER'}</small></article>)}
       <svg viewBox="0 0 1000 560" aria-hidden="true"><path d="M190 120C350 120 340 280 500 280"/><path d="M810 120C650 120 660 280 500 280"/><path d="M190 440C350 440 340 280 500 280"/><path d="M810 440C650 440 660 280 500 280"/></svg>
     </section>}
-    <section class:list={['inner-grid',{roadmapGrid:isRoadmap}]}>{cards.map((card,i)=><article><span>0{i+1}</span>{card.status&&<small class:list={{planned:card.status.includes('PLANNED')||card.status.includes('PLANEJADO')||card.status.includes('PLANIFICADO'),progress:card.status.includes('PROGRESS')||card.status.includes('PROGRESSO')||card.status.includes('CURSO'),delivered:card.status.includes('DELIVERED')||card.status.includes('ENTREGUE')||card.status.includes('ENTREGADO')}}>{card.status}</small>}<h2>{card.title}</h2><p>{card.text}</p>{card.title==='WebMCP'&&<a class="card-link" href={`/${lang}/developers/webmcp/`}>Explore WebMCP →</a>}</article>)}</section>
-    <section class="inner-statement"><p>{statement}</p><a href={`/${lang}/`}>← Sails Protocol</a></section>
+    <section class:list={['inner-grid',{roadmapGrid:isRoadmap}]}>{cards.map((card,i)=><article><span>0{i+1}</span>{card.status&&<small class:list={{planned:card.status.includes('PLANNED')||card.status.includes('PLANEJADO')||card.status.includes('PLANIFICADO')||card.status.includes('DIRECTION')||card.status.includes('DIREÇÃO')||card.status.includes('DIRECCIÓN'),progress:card.status.includes('PROGRESS')||card.status.includes('PROGRESSO')||card.status.includes('CURSO'),delivered:card.status.includes('DELIVERED')||card.status.includes('ENTREGUE')||card.status.includes('ENTREGADO')||card.status==='CURRENT'||card.status==='ATUAL'||card.status==='ACTUAL'}}>{card.status}</small>}<h2>{card.title}</h2><p>{card.text}</p>{links[i]&&<a class="card-link" href={`/${lang}/${links[i]}/`}>{labels.explore} →</a>}</article>)}</section>
+    <section class="inner-statement"><p>{statement}</p><div class="statement-actions"><a href={`/${lang}/`}>← Sails Protocol</a>{showSource&&<a href="https://github.com/alan-schramm/Sails-Protocol" target="_blank" rel="noreferrer">{labels.source} ↗</a>}</div></section>
   </main>
   <SiteFooter />
 </BaseLayout>

@@ -8,7 +8,6 @@ import { copy, locales, type Locale } from '../../i18n/content';
 export function getStaticPaths() { return locales.map(lang => ({ params: { lang } })); }
 const lang = Astro.params.lang as Locale;
 const t = copy[lang] ?? copy.en;
-const futureSdks = ['Settlement SDK', 'Identity SDK', 'Agents SDK'];
 const roadmap = [
   ['01', 'Protocol Foundation', t.current],
   ['02', 'P2P Trading SDK', t.current],
@@ -81,12 +80,25 @@ const roadmap = [
     </section>
 
     <section class="sdks" id="sdks">
-      <p class="eyebrow">03 / {t.sdkLabel}</p><div class="split"><h2>{t.sdkTitle}</h2><p>{t.sdkText}</p></div>
-      <div class="sdk-grid">
-        <article class="sdk active"><div><span>01</span><b>{t.sdkStatus}</b></div><h3>{t.p2p}</h3><p>{t.p2pText}</p><ul><li>Intent & discovery</li><li>Negotiation</li><li>Capability matching</li><li>Evidence & outcomes</li></ul><a href={`/${lang}/sdks/p2p-trading/`}>Explore SDK →</a></article>
-        {futureSdks.map((sdk, i) => <article class="sdk soon"><div><span>0{i+2}</span><b>{t.soon}</b></div><h3>{sdk}</h3><p>Focused capability surface. Final scope follows protocol evidence and release governance.</p><span class="lock">＋</span></article>)}
+      <p class="eyebrow">04 / {t.sdkLabel}</p><div class="split"><h2>{t.sdkTitle}</h2><p>{t.sdkText}</p></div>
+      <div class="current-sdk">
+        <div class="sdk-product-copy">
+          <div class="sdk-status-row"><span>{t.sdkStatus}</span><small>{t.sdkPackageLabel}</small></div>
+          <code>@satsails/p2p-trading-sdk</code>
+          <p class="sdk-list-label">{t.sdkCapabilitiesLabel}</p>
+          <ol>{t.sdkCapabilities.map((item,index) => <li><span>0{index + 1}</span>{item}</li>)}</ol>
+          <p class="sdk-list-label">{t.sdkControlLabel}</p>
+          <div class="sdk-controls">{t.sdkControls.map(item => <span>✓ {item}</span>)}</div>
+          <div class="sdk-actions"><a href={`/${lang}/sdks/p2p-trading/`}>{t.sdkCta} →</a><a href={`/${lang}/developers/documentation/`}>{t.sdkDocs}</a><a href="https://github.com/alan-schramm/Sails-Protocol">{t.sdkSource} ↗</a></div>
+        </div>
+        <div class="p2p-product-flow" role="img" aria-label={t.sdkFlowLabel}>
+          <div class="flow-sources">{t.sdkFlowSources.map((item,index) => <span><small>0{index + 1}</small>{item}</span>)}</div>
+          <div class="flow-connector" aria-hidden="true">→</div>
+          <div class="flow-sdk"><small>SAILS</small><b>{t.sdkFlowCore}</b><div>{t.sdkFlowSteps.map(item => <span>{item}</span>)}</div></div>
+          <div class="flow-connector" aria-hidden="true">→</div>
+          <div class="flow-execution"><span>{t.sdkFlowTarget}</span>{t.sdkFlowRails.map(item => <small><b>{item[0]}</b><i>{item[1]}</i></small>)}</div>
+        </div>
       </div>
-      <p class="principle">Different languages. Different interfaces. <strong>Same economic semantics.</strong></p>
     </section>
 
     <section class="modules-family" id="modules">

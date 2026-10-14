@@ -121,6 +121,57 @@
   .evidence-footer{align-items:flex-start;flex-direction:column}
 }
 
+/* Homepage reference implementations */
+.reference-cases{padding:125px max(22px,6vw);border-top:1px solid var(--line)}
+.cases-intro{display:grid;grid-template-columns:1.1fr .9fr;gap:3vw 8vw}
+.cases-intro .eyebrow{grid-column:1/-1}
+.cases-intro h2{margin:16px 0;font-size:clamp(40px,5vw,72px);line-height:.96;letter-spacing:-.055em}
+.cases-intro>p:last-child{align-self:end;color:var(--muted);font-size:16px}
+.case-grid{margin-top:68px;display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.case-grid>article{border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface)}
+.case-visual{position:relative;height:330px;border-bottom:1px solid var(--line);background:radial-gradient(circle at 55% 48%,rgba(78,156,255,.13),transparent 33%),linear-gradient(rgba(255,255,255,.024) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.024) 1px,transparent 1px);background-size:auto,34px 34px,34px 34px;overflow:hidden}
+.case-visual-2{background:radial-gradient(circle at 50% 50%,rgba(255,138,22,.13),transparent 35%),linear-gradient(rgba(255,255,255,.024) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.024) 1px,transparent 1px);background-size:auto,34px 34px,34px 34px}
+.case-window{position:absolute;left:12%;right:12%;top:12%;height:76%;border:1px solid var(--line);border-radius:18px;background:rgba(11,16,22,.78);box-shadow:0 20px 55px rgba(0,0,0,.28)}
+.case-visual-1 .case-window{left:27%;right:27%;border-radius:26px}
+.case-window>span{display:inline-block;width:6px;height:6px;margin:12px 0 0 7px;border-radius:50%;background:var(--line)}
+.case-window>span:first-child{margin-left:14px;background:var(--orange)}
+.case-mark{position:absolute;left:50%;top:47%;width:72px;height:72px;transform:translate(-50%,-50%);border:1px solid var(--blue);border-radius:50%;background:var(--canvas);box-shadow:0 0 0 16px rgba(78,156,255,.06)}
+.case-mark i{position:absolute;bottom:19px;width:0;height:0;border-style:solid}
+.case-mark i:first-child{left:19px;border-width:0 0 30px 14px;border-color:transparent transparent var(--blue) transparent}
+.case-mark i:last-child{right:17px;border-width:23px 13px 0 0;border-color:var(--orange) transparent transparent}
+.case-lines{position:absolute;left:50%;bottom:18%;width:34%;transform:translateX(-50%);display:grid;gap:7px}
+.case-lines span{height:1px;background:var(--line)}
+.case-lines span:nth-child(2){width:72%}
+.case-lines span:nth-child(3){width:48%}
+.case-flow{position:absolute;inset:0}
+.case-flow i{position:absolute;width:9px;height:9px;border-radius:50%;background:var(--orange);box-shadow:0 0 12px rgba(255,138,22,.65)}
+.case-flow i:nth-child(1){left:17%;top:35%}.case-flow i:nth-child(2){right:18%;top:38%;background:var(--blue)}.case-flow i:nth-child(3){right:28%;bottom:20%;background:var(--green)}
+.case-copy{padding:28px}
+.case-copy>div{display:flex;justify-content:space-between;gap:20px}
+.case-copy>div span{color:var(--blue);font-size:8px;font-weight:750}
+.case-copy>div small{color:var(--orange);font-size:7px;font-weight:750;letter-spacing:.09em;text-align:right}
+.case-copy h3{margin:55px 0 12px;font-size:30px}
+.case-copy p{color:var(--muted);font-size:13px}
+.case-copy ul{margin:26px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:7px}
+.case-copy li{padding:8px 9px;border:1px solid var(--line);color:var(--muted);font-size:8px}
+.cases-footer{padding:26px;border:1px solid var(--line);border-top:0;display:flex;align-items:center;justify-content:space-between;gap:30px}
+.cases-footer strong{max-width:760px;font-size:14px;line-height:1.5}
+.cases-footer a{flex:none;color:var(--orange);font-size:11px;font-weight:800}
+
+@media(max-width:800px){
+  .cases-intro{grid-template-columns:1fr}
+  .cases-intro .eyebrow{grid-column:auto}
+  .case-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .reference-cases{padding:85px 18px}
+  .case-grid{margin-top:46px}
+  .case-visual{height:280px}
+  .case-copy{padding:24px 18px}
+  .case-copy h3{margin-top:38px}
+  .cases-footer{align-items:flex-start;flex-direction:column}
+}
+
 /* Homepage protocol composition */
 .composition-flow{margin-top:68px;display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;gap:10px;align-items:stretch}
 .composition-flow article{min-height:150px;padding:20px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(78,156,255,.055),transparent 65%),var(--surface);display:flex;flex-direction:column}

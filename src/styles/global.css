@@ -388,3 +388,52 @@
 @media(max-width:700px){.node-offer{padding:85px 18px}.node-paths{grid-template-columns:1fr}.node-paths article{min-height:230px}.portal-login{padding:110px 18px 75px}.login-intro h1{font-size:54px}.login-card{padding:24px}.portal-shell{display:block}.portal-sidebar{position:relative;width:100%;height:auto;padding:12px 14px;flex-direction:row;align-items:center}.portal-sidebar nav{margin:0 0 0 auto;display:flex}.portal-sidebar nav a{display:none}.portal-sidebar nav a:nth-child(1),.portal-sidebar nav a:nth-child(3){display:flex}.portal-user{margin:0 0 0 6px}.portal-main{padding:35px 18px 70px}.portal-main>header{flex-direction:column}.portal-stats,.extension-list,.node-choice{grid-template-columns:1fr}.portal-panel>div:first-child{grid-template-columns:1fr}.portal-panel h2{margin-top:10px}}
 @media(max-width:520px){.ai-explore{padding:64px 18px;gap:30px}.ai-tools{grid-template-columns:1fr 1fr}.ai-tools a{min-height:78px;padding:9px;grid-template-columns:28px minmax(0,1fr);column-gap:8px}.ai-logo-frame{width:28px;height:28px;flex-basis:28px}.ai-tools .ai-logo-frame .ai-logo-claude{width:18px;height:18px}.ai-tools .ai-logo-frame .ai-logo-codex{width:14px;height:14px}.ai-tools .ai-logo-frame .ai-logo-gemini{width:17px;height:17px}.ai-tools .ai-logo-frame .ai-logo-grok{width:16px;height:16px}.ai-tools b{font-size:12px}.ai-tools .ai-status{font-size:6px;white-space:nowrap}}
 @media(max-width:350px){.ai-tools a{min-height:70px}}
+
+/* Global responsive and accessibility audit */
+html{min-width:320px;overflow-x:hidden;-webkit-text-size-adjust:100%}
+body{min-width:320px;overflow-x:hidden;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+button,input,select,textarea{font:inherit}
+img,svg{max-width:100%}
+h1,h2,h3{text-wrap:balance}
+p{text-wrap:pretty}
+.glass-nav nav>a[aria-current="page"]{background:rgba(255,255,255,.06);color:var(--text)}
+.locale a[aria-current="true"]{font-weight:800}
+.actions a,.sdk-actions a,.more-link,.card-link,.section-copy a,.evidence-footer a,.cases-footer a{min-height:44px;display:inline-flex;align-items:center}
+.module-family-grid small,.sdk-family-row small,.implementation-row small,.evidence-cards article>div small,.evidence-cards article>strong,.evidence-directions small,.interface-cards article small,.case-copy>div small,.case-copy li{font-size:9px}
+.flow-execution small i,.flow-sdk span,.diagram-boundary,.protocol-diagram .diagram-key{font-size:8px}
+
+@media(max-width:1050px){
+  .glass-nav nav{overscroll-behavior:contain}
+  .glass-nav.menu-open{border-bottom-left-radius:10px;border-bottom-right-radius:10px}
+  .glass-nav nav>a,.nav-group>button{font-size:13px}
+  .submenu small{font-size:10px}
+}
+
+@media(max-width:600px){
+  .hero h1{font-size:clamp(46px,15vw,54px)}
+  .hero h1 em{font-size:.52em;line-height:1.05}
+  .lead{font-size:18px}
+  .manifest{align-items:flex-start}
+  .manifest span{font-size:9px}
+  .market-orbit .node{padding:7px;font-size:7px}
+  .participation-visual{min-height:0;padding:28px 14px;display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:center}
+  .participation-visual svg{display:none}
+  .participation-visual>span{position:static;min-width:0;transform:none!important}
+  .participation-visual .open-core{position:relative;left:auto;top:auto;grid-column:1/-1;grid-row:2;width:190px;height:190px;margin:14px auto;transform:none}
+  .participation-visual .p1,.participation-visual .p2{grid-row:1}
+  .participation-visual .p3,.participation-visual .p4{grid-row:3}
+  .protocol-diagram .layer b{line-height:1.25}
+  .final-routes a{min-height:132px}
+  footer{align-items:start}
+}
+
+@media(max-width:380px){
+  .glass-nav{width:calc(100% - 18px)}
+  .brand b{font-size:10px}
+  .locale a{min-width:25px;font-size:7px}
+  .menu-toggle{width:40px;height:40px;margin-right:2px}
+  .hero,.problem,.anatomy,.sdks,.roadmap,.market-participation,.modules-family,.evidence-section,.reference-cases,.interfaces-section,.final-cta{padding-left:14px;padding-right:14px}
+  .problem blockquote{font-size:34px}
+  .section-copy h2,.split h2,.roadmap h2{font-size:42px}
+  .participation-visual .open-core{width:170px;height:170px}
+}

@@ -3,42 +3,42 @@ import type { Locale } from '../i18n/content';
 interface Props { lang: Locale; path?: string }
 const { lang, path = '' } = Astro.props;
 const labels = lang === 'pt-BR'
-  ? { product:'Produto', developers:'Desenvolvedores', cases:'Casos de estudo', sdk:'SDK', ui:'UI Kit', market:'Sails Market', node:'Sails Node', extension:'Open Extension', docs:'Documentação' }
+  ? { home:'Home', product:'Produto', developers:'Desenvolvedores', cases:'Casos de estudo', sdk:'SDK', ui:'UI Kit', market:'Sails Market', node:'Sails Node', extension:'Open Extension', docs:'Documentação', devProducts:'Produtos para desenvolvedores', soon:'Em breve', reference:'Plataforma de referência', capability:'Modelo de capacidades', docsTools:'Documentação e WebMCP', source:'Fonte canônica', safety:'Safety Center', start:'Começar', open:'Abrir navegação', close:'Fechar navegação', nav:'Navegação principal', languages:'Seletor de idioma' }
   : lang === 'es'
-  ? { product:'Producto', developers:'Desarrolladores', cases:'Casos de estudio', sdk:'SDK', ui:'UI Kit', market:'Sails Market', node:'Sails Node', extension:'Open Extension', docs:'Documentación' }
-  : { product:'Product', developers:'Developers', cases:'Case studies', sdk:'SDK', ui:'UI Kit', market:'Sails Market', node:'Sails Node', extension:'Open Extension', docs:'Documentation' };
+  ? { home:'Home', product:'Producto', developers:'Desarrolladores', cases:'Casos de estudio', sdk:'SDK', ui:'UI Kit', market:'Sails Market', node:'Sails Node', extension:'Open Extension', docs:'Documentación', devProducts:'Productos para desarrolladores', soon:'Próximamente', reference:'Plataforma de referencia', capability:'Modelo de capacidades', docsTools:'Documentación y WebMCP', source:'Fuente canónica', safety:'Safety Center', start:'Comenzar', open:'Abrir navegación', close:'Cerrar navegación', nav:'Navegación principal', languages:'Selector de idioma' }
+  : { home:'Home', product:'Product', developers:'Developers', cases:'Case studies', sdk:'SDK', ui:'UI Kit', market:'Sails Market', node:'Sails Node', extension:'Open Extension', docs:'Documentation', devProducts:'Developer products', soon:'Coming soon', reference:'Reference platform', capability:'Capability model', docsTools:'Documentation and WebMCP', source:'Canonical source', safety:'Safety Center', start:'Get started', open:'Open navigation', close:'Close navigation', nav:'Primary navigation', languages:'Language selector' };
 const suffix = path ? `/${path}` : '/';
 ---
 <header class="glass-nav">
   <a class="brand" href={`/${lang}/`} aria-label="Sails Protocol home"><span class="mark"><i></i><i></i></span><b>SAILS</b><small>PROTOCOL</small></a>
-  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation"><span></span><span></span></button>
-  <nav id="primary-navigation" aria-label="Primary navigation">
-    <a href={`/${lang}/`}>Home</a>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label={labels.open} data-open-label={labels.open} data-close-label={labels.close}><span></span><span></span></button>
+  <nav id="primary-navigation" aria-label={labels.nav}>
+    <a href={`/${lang}/`} aria-current={!path ? 'page' : undefined}>{labels.home}</a>
     <div class="nav-group">
       <button type="button" aria-haspopup="true">{labels.product}<span>⌄</span></button>
       <div class="submenu">
-        <a href={`/${lang}/sdks/`}><b>{labels.sdk}</b><small>Developer products</small></a>
-        <a href={`/${lang}/products/ui-kit/`}><b>{labels.ui}</b><small>Coming soon</small></a>
-        <a href={`/${lang}/products/sails-market/`}><b>{labels.market}</b><small>Reference platform</small></a>
-        <a href={`/${lang}/products/sails-node/`}><b>{labels.node}</b><small>Coming soon</small></a>
+        <a href={`/${lang}/sdks/`}><b>{labels.sdk}</b><small>{labels.devProducts}</small></a>
+        <a href={`/${lang}/products/ui-kit/`}><b>{labels.ui}</b><small>{labels.soon}</small></a>
+        <a href={`/${lang}/products/sails-market/`}><b>{labels.market}</b><small>{labels.reference}</small></a>
+        <a href={`/${lang}/products/sails-node/`}><b>{labels.node}</b><small>{labels.soon}</small></a>
       </div>
     </div>
     <div class="nav-group">
       <button type="button" aria-haspopup="true">{labels.developers}<span>⌄</span></button>
       <div class="submenu">
-        <a href={`/${lang}/developers/open-extension/`}><b>{labels.extension}</b><small>Capability model</small></a>
-        <a href={`/${lang}/developers/documentation/`}><b>{labels.docs}</b><small>Docs and WebMCP</small></a>
-        <a href="https://github.com/sails-protocol/sails-protocol-website"><b>GitHub</b><small>Source of truth ↗</small></a>
+        <a href={`/${lang}/developers/open-extension/`}><b>{labels.extension}</b><small>{labels.capability}</small></a>
+        <a href={`/${lang}/developers/documentation/`}><b>{labels.docs}</b><small>{labels.docsTools}</small></a>
+        <a href="https://github.com/alan-schramm/Sails-Protocol"><b>GitHub</b><small>{labels.source} ↗</small></a>
       </div>
     </div>
     <a href={`/${lang}/case-studies/`}>{labels.cases}</a>
     <a href={`https://sails-protocol-blog.netlify.app/${lang}/`}>Blog</a>
-    <a href={`/${lang}/safety-center/`}>Safety Center</a>
-    <a class="mobile-get-started" href={`/${lang}/portal/login/`}>Get started</a>
+    <a href={`/${lang}/safety-center/`}>{labels.safety}</a>
+    <a class="mobile-get-started" href={`/${lang}/portal/login/`}>{labels.start}</a>
   </nav>
   <div class="nav-actions">
-    <div class="locale" aria-label="Language selector">{(['en','pt-BR','es'] as const).map(locale => <a class:list={{active:locale===lang}} href={`/${locale}${suffix}`}>{locale==='pt-BR'?'PT':locale.toUpperCase()}</a>)}</div>
-    <a class="github get-started" href={`/${lang}/portal/login/`}>Get started</a>
+    <div class="locale" aria-label={labels.languages}>{(['en','pt-BR','es'] as const).map(locale => <a class:list={{active:locale===lang}} aria-current={locale===lang?'true':undefined} href={`/${locale}${suffix}`}>{locale==='pt-BR'?'PT':locale.toUpperCase()}</a>)}</div>
+    <a class="github get-started" href={`/${lang}/portal/login/`}>{labels.start}</a>
   </div>
 </header>
 <script>
@@ -48,10 +48,22 @@ const suffix = path ? `/${path}` : '/';
     toggle?.addEventListener('click', () => {
       const open = header.classList.toggle('menu-open');
       toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? toggle.dataset.closeLabel || '' : toggle.dataset.openLabel || '');
     });
     nav?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
       header.classList.remove('menu-open');
       toggle?.setAttribute('aria-expanded', 'false');
+      if (toggle instanceof HTMLElement) toggle.setAttribute('aria-label', toggle.dataset.openLabel || '');
     }));
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && header.classList.contains('menu-open')) {
+        header.classList.remove('menu-open');
+        toggle?.setAttribute('aria-expanded', 'false');
+        if (toggle instanceof HTMLElement) {
+          toggle.setAttribute('aria-label', toggle.dataset.openLabel || '');
+          toggle.focus();
+        }
+      }
+    });
   });
 </script>

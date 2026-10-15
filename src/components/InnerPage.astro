@@ -14,7 +14,10 @@ const cardLinks:Record<string,string[]> = {
   'developers/documentation':['anatomy','sdks/p2p-trading','developers/open-extension','developers/webmcp'],
   'developers/open-extension':['developers/documentation','safety-center','anatomy','integrations'],
   'developers/webmcp':['developers/documentation','developers/open-extension','safety-center','explore-ai'],
-  'safety-center':['anatomy','developers/open-extension','integrations','developers/documentation']
+  'safety-center':['anatomy','developers/open-extension','integrations','developers/documentation'],
+  'products/ui-kit':['sdks/p2p-trading','developers/open-extension','safety-center','developers'],
+  'products/sails-market':['sdks/p2p-trading','protocol','integrations','safety-center'],
+  'products/sails-node':['anatomy','developers/open-extension','integrations','roadmap']
 };
 const links = cardLinks[path] ?? [];
 const labels = lang==='pt-BR'
@@ -26,7 +29,10 @@ const showSource = path==='sdks'||path==='developers'||path==='developers/docume
 const maturity:Record<string,Record<Locale,string>> = {
   'developers/open-extension':{en:'EXTENSION MODEL','pt-BR':'MODELO DE EXTENSÃO',es:'MODELO DE EXTENSIÓN'},
   'developers/webmcp':{en:'EXPERIMENTAL WEBSITE SURFACE','pt-BR':'SUPERFÍCIE EXPERIMENTAL DO SITE',es:'SUPERFICIE EXPERIMENTAL DEL SITIO'},
-  'safety-center':{en:'CURRENT PRINCIPLES','pt-BR':'PRINCÍPIOS ATUAIS',es:'PRINCIPIOS ACTUALES'}
+  'safety-center':{en:'CURRENT PRINCIPLES','pt-BR':'PRINCÍPIOS ATUAIS',es:'PRINCIPIOS ACTUALES'},
+  'products/ui-kit':{en:'RESEARCH / DIRECTION','pt-BR':'PESQUISA / DIREÇÃO',es:'INVESTIGACIÓN / DIRECCIÓN'},
+  'products/sails-market':{en:'REFERENCE PRODUCT','pt-BR':'PRODUTO DE REFERÊNCIA',es:'PRODUCTO DE REFERENCIA'},
+  'products/sails-node':{en:'IMPLEMENTATION-DEPENDENT / DIRECTION','pt-BR':'DEPENDENTE DA IMPLEMENTAÇÃO / DIREÇÃO',es:'DEPENDIENTE DE IMPLEMENTACIÓN / DIRECCIÓN'}
 };
 const pageMaturity = maturity[path]?.[lang];
 ---

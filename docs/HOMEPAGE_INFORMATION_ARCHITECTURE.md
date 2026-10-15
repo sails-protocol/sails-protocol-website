@@ -177,7 +177,7 @@ Boundary statement:
 
 This section replaces the current generic “open market participation” block with a clearer before-and-after argument.
 
-### 4. Anatomy: stable semantics, replaceable edges
+### 4. Anatomy: stable semantics, replaceable components
 
 Question answered: Where does Sails sit technically?
 

@@ -11,7 +11,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "test:webmcp": "node scripts/validate-webmcp.mjs"
+    "test:webmcp": "node scripts/validate-webmcp.mjs",
+    "test:site": "node scripts/validate-site.mjs"
   },
   "dependencies": {
     "astro": "^5.15.4"

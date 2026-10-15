@@ -4,6 +4,10 @@ import type { Locale } from '../i18n/content';
 import WebMCPTools from '../components/WebMCPTools.astro';
 interface Props { lang: Locale; title: string; description: string; }
 const { lang, title, description } = Astro.props;
+const currentPath = Astro.url.pathname;
+const localizedPath = (locale: Locale) => currentPath.replace(/^\/(en|pt-BR|es)(?=\/)/, `/${locale}`);
+const absoluteUrl = (path: string) => new URL(path, Astro.site ?? Astro.url.origin).toString();
+const canonical = absoluteUrl(currentPath);
 ---
 <!doctype html>
 <html lang={lang} class="dark">
@@ -12,10 +16,20 @@ const { lang, title, description } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#10161d" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Sails Protocol" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     <link rel="icon" href="/favicon.svg" />
-    <link rel="alternate" hreflang="en" href="/en/" />
-    <link rel="alternate" hreflang="pt-BR" href="/pt-BR/" />
-    <link rel="alternate" hreflang="es" href="/es/" />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href={absoluteUrl(localizedPath('en'))} />
+    <link rel="alternate" hreflang="pt-BR" href={absoluteUrl(localizedPath('pt-BR'))} />
+    <link rel="alternate" hreflang="es" href={absoluteUrl(localizedPath('es'))} />
+    <link rel="alternate" hreflang="x-default" href={absoluteUrl(localizedPath('en'))} />
     <title>{title}</title>
   </head>
   <body><slot /><WebMCPTools lang={lang} /></body>

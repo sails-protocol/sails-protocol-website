@@ -91,9 +91,6 @@ const t = copy[lang] ?? copy.en;
     <section class="modules-family" id="modules">
       <div class="modules-intro"><p class="eyebrow">05 / {t.compositionLabel}</p><h2>{t.compositionTitle}</h2><p>{t.compositionText}</p></div>
       <div class="composition-flow">{t.compositionFlow.map((item,index) => <><article><span>0{index + 1}</span><b>{item[0]}</b><small>{item[1]}</small></article>{index < t.compositionFlow.length - 1 && <i aria-hidden="true">↓</i>}</>)}</div>
-      <a class="extension-feature" href={`/${lang}/developers/open-extension/`}>
-        <div><span>05</span><i aria-hidden="true">＋</i></div><div><small>{t.extensionLabel}</small><h3>{t.extensionTitle}</h3><p>{t.extensionText}</p></div><b>{t.extensionCta} →</b>
-      </a>
       <p class="family-label">{t.modulesLabel}</p>
       <div class="module-family-grid">{t.modules.map((m,i)=><article class:list={{primary:i===0}}><span>0{i+1}</span><small>{m[2]}</small><i class="module-icon" aria-hidden="true">{m[3]}</i><h3>{m[0]}</h3><p>{m[1]}</p></article>)}</div>
       <div class="family-lanes">
@@ -104,8 +101,24 @@ const t = copy[lang] ?? copy.en;
       <div class="module-rule">{t.compositionRule.map((item,index) => <><span>{item}</span>{index < t.compositionRule.length - 1 && <b>≠</b>}</>)}</div>
     </section>
 
+    <section class="protocol-surface extension-home" id="open-extension">
+      <div class="surface-intro"><p class="eyebrow">06 / {t.extensionLabel}</p><h2>{t.extensionTitle}</h2><p>{t.extensionText}</p></div>
+      <div class="extension-home-visual" role="img" aria-label={t.extensionTitle}>
+        <div class="extension-home-core"><span class="mark" aria-hidden="true"><i></i><i></i></span><small>SAILS</small><b>SEMANTIC KERNEL</b></div>
+        <div class="extension-home-facets">{t.extensionFacets.map((item,index) => <article><span>0{index + 1}</span><div><b>{item[0]}</b><small>{item[1]}</small></div></article>)}</div>
+      </div>
+      <a class="surface-link" href={`/${lang}/developers/open-extension/`}>{t.extensionCta} →</a>
+    </section>
+
+    <section class="protocol-surface node-home" id="sails-node">
+      <div class="surface-intro"><p class="eyebrow">07 / {t.nodeLabel}</p><h2>{t.nodeTitle}</h2><p>{t.nodeText}</p></div>
+      <div class="node-home-flow" role="img" aria-label={t.nodeTitle}>{t.nodeFlow.map((item,index) => <article><span>0{index + 1}</span><b>{item[0]}</b><small>{item[1]}</small></article>)}</div>
+      <div class="node-home-models">{t.nodeModels.map((item,index) => <article class:list={{documented:index===0}}><span>{item[0]}</span><b>{item[1]}</b></article>)}</div>
+      <a class="surface-link" href={`/${lang}/products/sails-node/`}>{t.nodeCta} →</a>
+    </section>
+
     <section class="evidence-section" id="evidence">
-      <div class="evidence-intro"><p class="eyebrow">06 / {t.evidenceLabel}</p><h2>{t.evidenceTitle}</h2><p>{t.evidenceText}</p></div>
+      <div class="evidence-intro"><p class="eyebrow">08 / {t.evidenceLabel}</p><h2>{t.evidenceTitle}</h2><p>{t.evidenceText}</p></div>
       <div class="evidence-cards">{t.evidenceCards.map((item,index) => <article>
         <div><span>0{index + 1}</span><small>{item[1]}</small></div><strong>{item[2]}</strong><h3>{item[0]}</h3><p>{item[3]}</p>
       </article>)}</div>
@@ -115,7 +128,7 @@ const t = copy[lang] ?? copy.en;
     </section>
 
     <section class="reference-cases" id="case-studies">
-      <div class="cases-intro"><p class="eyebrow">07 / {t.casesLabel}</p><h2>{t.casesTitle}</h2><p>{t.casesText}</p></div>
+      <div class="cases-intro"><p class="eyebrow">09 / {t.casesLabel}</p><h2>{t.casesTitle}</h2><p>{t.casesText}</p></div>
       <div class="case-grid">{t.cases.map((item,index) => <article>
         <div class:list={['case-visual', `case-visual-${index + 1}`]} aria-hidden="true">
           <div class="case-window"><span></span><span></span><span></span></div>
@@ -129,7 +142,7 @@ const t = copy[lang] ?? copy.en;
     </section>
 
     <section class="interfaces-section" id="interfaces">
-      <div class="interfaces-intro"><p class="eyebrow">08 / {t.interfacesLabel}</p><h2>{t.interfacesTitle}</h2><p>{t.interfacesText}</p></div>
+      <div class="interfaces-intro"><p class="eyebrow">10 / {t.interfacesLabel}</p><h2>{t.interfacesTitle}</h2><p>{t.interfacesText}</p></div>
       <div class="interface-groups">
         <div><p class="family-label">{t.currentInterfacesLabel}</p><div class="interface-cards current-interfaces">{t.currentInterfaces.map((item,index) => <article><span>0{index + 1}</span><b>{item[0]}</b><small>{item[1]}</small></article>)}</div></div>
         <div><p class="family-label">{t.evolvingInterfacesLabel}</p><div class="interface-cards evolving-interfaces">{t.evolvingInterfaces.map((item,index) => <article><span>0{index + 1}</span><b>{item[0]}</b><small>{item[1]}</small></article>)}</div></div>
@@ -142,7 +155,7 @@ const t = copy[lang] ?? copy.en;
     </section>
 
     <section class="roadmap" id="roadmap">
-      <div class="roadmap-heading"><div><p class="eyebrow">09 / {t.roadmapLabel}</p><h2>{t.roadmapTitle}</h2></div><p>{t.roadmapText}</p></div>
+      <div class="roadmap-heading"><div><p class="eyebrow">11 / {t.roadmapLabel}</p><h2>{t.roadmapTitle}</h2></div><p>{t.roadmapText}</p></div>
       <div class="status-key"><span>{t.current}</span><span>{t.demonstrated}</span><span>{t.development}</span><span>{t.direction}</span></div>
       <div class="roadmap-line">{t.roadmapItems.map((item, i) => <article class={`status-${item[2]}`}><span>0{i + 1}</span><div><h3>{item[0]}</h3><p>{item[1]}</p><small>{item[3]}</small></div></article>)}</div>
       <p class="reality">{t.reality}. <strong>{t.roadmapClosing}</strong></p><a class="more-link" href={`/${lang}/roadmap/`}>{t.roadmapCta} →</a>

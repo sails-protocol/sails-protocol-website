@@ -91,6 +91,9 @@ const t = copy[lang] ?? copy.en;
     <section class="modules-family" id="modules">
       <div class="modules-intro"><p class="eyebrow">05 / {t.compositionLabel}</p><h2>{t.compositionTitle}</h2><p>{t.compositionText}</p></div>
       <div class="composition-flow">{t.compositionFlow.map((item,index) => <><article><span>0{index + 1}</span><b>{item[0]}</b><small>{item[1]}</small></article>{index < t.compositionFlow.length - 1 && <i aria-hidden="true">↓</i>}</>)}</div>
+      <a class="extension-feature" href={`/${lang}/developers/open-extension/`}>
+        <div><span>05</span><i aria-hidden="true">＋</i></div><div><small>{t.extensionLabel}</small><h3>{t.extensionTitle}</h3><p>{t.extensionText}</p></div><b>{t.extensionCta} →</b>
+      </a>
       <p class="family-label">{t.modulesLabel}</p>
       <div class="module-family-grid">{t.modules.map((m,i)=><article class:list={{primary:i===0}}><span>0{i+1}</span><small>{m[2]}</small><i class="module-icon" aria-hidden="true">{m[3]}</i><h3>{m[0]}</h3><p>{m[1]}</p></article>)}</div>
       <div class="family-lanes">

@@ -2,10 +2,11 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from './SiteHeader.astro';
 import SiteFooter from './SiteFooter.astro';
+import PageDiagram from './PageDiagram.astro';
 import type { Locale } from '../i18n/content';
 interface Card { title: string; text: string; status?: string }
 interface Props { lang: Locale; eyebrow: string; title: string; intro: string; cards: Card[]; statement: string; diagram?: 'flow'|'kernel'|'sdk'|'network'; }
-const { lang, eyebrow, title, intro, cards, statement, diagram='flow' } = Astro.props;
+const { lang, eyebrow, title, intro, cards, statement } = Astro.props;
 const path = Astro.url.pathname.split('/').slice(2).filter(Boolean).join('/');
 const isRoadmap = eyebrow.includes('ROADMAP');
 const cardLinks:Record<string,string[]> = {
@@ -42,11 +43,7 @@ const pageMaturity = maturity[path]?.[lang];
     <section class="inner-hero"><p class="eyebrow">{eyebrow}</p><h1>{title}</h1><p>{intro}</p>{pageMaturity&&<div class="page-maturity"><i></i><span>{pageMaturity}</span></div>}</section>
     {isRoadmap ? <section class="roadmap-visual" aria-label={`${title} ${labels.timeline}`}>
       <div class="roadmap-signal"><span></span><b>{labels.now}</b></div><div class="roadmap-track">{cards.map((card,i)=><div class:list={['milestone',{done:i===0,current:i===1||i===2}]}><i></i><small>0{i+1}</small><b>{card.title}</b></div>)}</div>
-    </section> : <section class={`inner-diagram ${diagram}`} aria-label={`${title} ${labels.visual}`}>
-      <div class="diagram-center"><span class="mark"><i></i><i></i></span><b>SAILS</b><small>economic semantics</small></div>
-      {cards.slice(0,4).map((card,i)=><article class={`visual-card v${i+1}`}><span>0{i+1}</span><b>{card.title}</b><small>{card.status ?? 'PROTOCOL LAYER'}</small></article>)}
-      <svg viewBox="0 0 1000 560" aria-hidden="true"><path d="M190 120C350 120 340 280 500 280"/><path d="M810 120C650 120 660 280 500 280"/><path d="M190 440C350 440 340 280 500 280"/><path d="M810 440C650 440 660 280 500 280"/></svg>
-    </section>}
+    </section> : <PageDiagram lang={lang} path={path} title={title} cards={cards} />}
     <section class:list={['inner-grid',{roadmapGrid:isRoadmap}]}>{cards.map((card,i)=><article><span>0{i+1}</span>{card.status&&<small class:list={{planned:card.status.includes('PLANNED')||card.status.includes('PLANEJADO')||card.status.includes('PLANIFICADO')||card.status.includes('DIRECTION')||card.status.includes('DIREÇÃO')||card.status.includes('DIRECCIÓN'),progress:card.status.includes('PROGRESS')||card.status.includes('PROGRESSO')||card.status.includes('CURSO'),delivered:card.status.includes('DELIVERED')||card.status.includes('ENTREGUE')||card.status.includes('ENTREGADO')||card.status==='CURRENT'||card.status==='ATUAL'||card.status==='ACTUAL'}}>{card.status}</small>}<h2>{card.title}</h2><p>{card.text}</p>{links[i]&&<a class="card-link" href={`/${lang}/${links[i]}/`}>{labels.explore} →</a>}</article>)}</section>
     <section class="inner-statement"><p>{statement}</p><div class="statement-actions"><a href={`/${lang}/`}>← Sails Protocol</a>{showSource&&<a href="https://github.com/alan-schramm/Sails-Protocol" target="_blank" rel="noreferrer">{labels.source} ↗</a>}</div></section>
   </main>

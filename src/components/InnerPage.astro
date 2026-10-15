@@ -25,7 +25,7 @@ const labels = lang==='pt-BR'
 const showSource = path==='sdks'||path==='developers'||path==='developers/documentation'||path==='developers/open-extension'||path==='developers/webmcp'||path==='safety-center';
 const maturity:Record<string,Record<Locale,string>> = {
   'developers/open-extension':{en:'EXTENSION MODEL','pt-BR':'MODELO DE EXTENSÃO',es:'MODELO DE EXTENSIÓN'},
-  'developers/webmcp':{en:'RESEARCH / DIRECTION','pt-BR':'PESQUISA / DIREÇÃO',es:'INVESTIGACIÓN / DIRECCIÓN'},
+  'developers/webmcp':{en:'EXPERIMENTAL WEBSITE SURFACE','pt-BR':'SUPERFÍCIE EXPERIMENTAL DO SITE',es:'SUPERFICIE EXPERIMENTAL DEL SITIO'},
   'safety-center':{en:'CURRENT PRINCIPLES','pt-BR':'PRINCÍPIOS ATUAIS',es:'PRINCIPIOS ACTUALES'}
 };
 const pageMaturity = maturity[path]?.[lang];

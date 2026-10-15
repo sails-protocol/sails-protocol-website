@@ -1,0 +1,96 @@
+---
+import type { Locale } from '../i18n/content';
+interface Props { lang: Locale }
+const { lang } = Astro.props;
+---
+<script define:vars={{ lang }}>
+  const modelContext = document.modelContext;
+  if (modelContext?.registerTool) {
+    const base = `/${lang}`;
+    const canonicalRepository = 'https://github.com/alan-schramm/Sails-Protocol';
+    const messages = {
+      en:{ mapTitle:'Get Sails site map',mapDescription:'Returns official Sails Protocol website sections, localized URLs and their purpose. Read-only.',overviewTitle:'Get Sails protocol overview',overviewDescription:'Returns a concise overview of Sails Protocol, its layers, modules and non-custodial boundaries. Read-only.',maturityTitle:'Get capability maturity',maturityDescription:'Returns the evidence-based website maturity label for a named Sails capability. Read-only and does not imply production eligibility.',findTitle:'Find a Sails resource',findDescription:'Finds relevant official website sections from a short topic query and returns URLs without navigating or modifying state.'},
+      'pt-BR':{ mapTitle:'Consultar mapa do site Sails',mapDescription:'Retorna seções oficiais do site Sails Protocol, URLs localizadas e suas finalidades. Somente leitura.',overviewTitle:'Consultar visão geral do Sails',overviewDescription:'Retorna uma visão concisa do Sails Protocol, suas camadas, módulos e limites não custodiais. Somente leitura.',maturityTitle:'Consultar maturidade de capacidade',maturityDescription:'Retorna a classificação de maturidade baseada em evidências para uma capacidade do Sails. Não indica elegibilidade para produção.',findTitle:'Encontrar recurso do Sails',findDescription:'Encontra seções oficiais relevantes a partir de um tópico curto, sem navegar ou alterar estado.'},
+      es:{ mapTitle:'Consultar mapa del sitio Sails',mapDescription:'Devuelve secciones oficiales del sitio Sails Protocol, URLs localizadas y sus propósitos. Solo lectura.',overviewTitle:'Consultar visión general de Sails',overviewDescription:'Devuelve una visión concisa de Sails Protocol, sus capas, módulos y límites no custodiales. Solo lectura.',maturityTitle:'Consultar madurez de capacidad',maturityDescription:'Devuelve la clasificación de madurez basada en evidencia para una capacidad de Sails. No indica elegibilidad para producción.',findTitle:'Encontrar recurso de Sails',findDescription:'Encuentra secciones oficiales relevantes a partir de un tema corto, sin navegar ni modificar estado.'}
+    }[lang];
+    const routes = [
+      { id:'home', path:`${base}/`, purpose:'Protocol overview and current product narrative' },
+      { id:'protocol', path:`${base}/protocol/`, purpose:'Protocol principles and boundaries' },
+      { id:'anatomy', path:`${base}/anatomy/`, purpose:'Semantic kernel, core, modules, providers and infrastructure' },
+      { id:'sdks', path:`${base}/sdks/`, purpose:'SDK family and individual maturity' },
+      { id:'p2p-trading-sdk', path:`${base}/sdks/p2p-trading/`, purpose:'Current P2P Trading SDK product' },
+      { id:'integrations', path:`${base}/integrations/`, purpose:'Providers, rails and integration evidence' },
+      { id:'roadmap', path:`${base}/roadmap/`, purpose:'Delivered, in-progress and planned capabilities' },
+      { id:'developers', path:`${base}/developers/`, purpose:'Developer platforms, languages and agent interfaces' },
+      { id:'documentation', path:`${base}/developers/documentation/`, purpose:'Developer documentation entry point' },
+      { id:'open-extension', path:`${base}/developers/open-extension/`, purpose:'Capability extension model and evidence contracts' },
+      { id:'webmcp', path:`${base}/developers/webmcp/`, purpose:'WebMCP implementation status and exposed website tools' },
+      { id:'safety', path:`${base}/safety-center/`, purpose:'Custody, authority, provider and evidence boundaries' }
+    ];
+    const maturity = {
+      'p2p-trading-sdk': { status:'current', detail:'First concrete developer product. Public package: @satsails/p2p-trading-sdk.' },
+      'typescript': { status:'current', detail:'Primary implementation. It is first, not authoritative.' },
+      'bitcoin-multisig': { status:'demonstrated', detail:'Small-value mainnet rehearsal disclosed by the canonical repository.' },
+      'wdk-usdt-evm': { status:'demonstrated', detail:'Real-path testnet evidence disclosed by the canonical repository.' },
+      'arkade-vtxo': { status:'demonstrated', detail:'Testnet evidence disclosed by the canonical repository.' },
+      'lightning': { status:'independent-maturity', detail:'Must be evaluated through capability-specific evidence.' },
+      'liquid': { status:'direction', detail:'Designed where recorded; do not infer production readiness.' },
+      'spark': { status:'direction', detail:'Integration target tracked through capability-specific evidence.' },
+      'portable-reputation': { status:'research-direction', detail:'Participant-centered, re-verifiable economic history is an intended direction.' },
+      'mcp': { status:'research-direction', detail:'A server MCP integration is outside this website implementation.' },
+      'webmcp': { status:'experimental-prototype', detail:'This website registers a read-only tool surface when the browser supports the draft API.' }
+    };
+    const readOnly = { readOnlyHint:true, untrustedContentHint:false, consequentialHint:false };
+    const tools = [
+      {
+        name:'sails.get_site_map',
+        title:messages.mapTitle,
+        description:messages.mapDescription,
+        inputSchema:{ type:'object', properties:{}, additionalProperties:false },
+        annotations:readOnly,
+        execute:async()=>({ locale:lang, canonicalRepository, routes })
+      },
+      {
+        name:'sails.get_protocol_overview',
+        title:messages.overviewTitle,
+        description:messages.overviewDescription,
+        inputSchema:{ type:'object', properties:{}, additionalProperties:false },
+        annotations:readOnly,
+        execute:async()=>({
+          name:'Sails Protocol',
+          definition:'Economic Coordination Protocol for building interoperable P2P financial marketplaces.',
+          principles:['No token','No DAO','No new blockchain','Coordination semantics are the protocol','External execution remains replaceable'],
+          layers:['Interfaces and SDKs','Open Extension','Open Modules','Sails Core','Semantic Kernel','Providers and external infrastructure'],
+          modules:['OpenP2P','OpenSettlement','OpenLiquidity','OpenIdentity','OpenReputation','OpenAgents','OpenFinance','OpenProof'],
+          firstProduct:'@satsails/p2p-trading-sdk',
+          canonicalRepository
+        })
+      },
+      {
+        name:'sails.get_capability_maturity',
+        title:messages.maturityTitle,
+        description:messages.maturityDescription,
+        inputSchema:{ type:'object', required:['capability'], additionalProperties:false, properties:{ capability:{ type:'string', enum:Object.keys(maturity) } } },
+        annotations:readOnly,
+        execute:async({ capability })=>({ capability, ...maturity[capability], source:canonicalRepository })
+      },
+      {
+        name:'sails.find_resource',
+        title:messages.findTitle,
+        description:messages.findDescription,
+        inputSchema:{ type:'object', required:['query'], additionalProperties:false, properties:{ query:{ type:'string', minLength:2, maxLength:120 } } },
+        annotations:readOnly,
+        execute:async({ query })=>{
+          const terms=String(query).toLowerCase().split(/\s+/).filter(Boolean);
+          const matches=routes.map(route=>({ ...route, score:terms.reduce((score,term)=>score+((route.id+' '+route.purpose).toLowerCase().includes(term)?1:0),0) })).filter(route=>route.score>0).sort((a,b)=>b.score-a.score).slice(0,5);
+          return { query, locale:lang, matches:matches.map(({score,...route})=>route), canonicalRepository };
+        }
+      }
+    ];
+    Promise.allSettled(tools.map(tool=>modelContext.registerTool(tool))).then(results=>{
+      document.documentElement.dataset.webmcp = results.some(result=>result.status==='fulfilled') ? 'active' : 'unavailable';
+    });
+  } else {
+    document.documentElement.dataset.webmcp = 'unsupported';
+  }
+</script>

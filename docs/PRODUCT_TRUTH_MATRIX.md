@@ -108,7 +108,7 @@ The site may show all modules as architectural capability domains. It must assig
 | Specific operational CLIs | Current where documented | Do not call them a complete canonical Sails CLI |
 | Canonical Sails CLI | In development / Direction | Present as evolving |
 | MCP | Research / Direction | Do not describe as an active official integration |
-| WebMCP | Research / Direction | Present as part of the agent-ready interface direction |
+| WebMCP | Experimental website prototype / Direction | The official website registers four read-only tools when the browser supports the draft API. Do not imply browser-wide support, write access or protocol authority |
 | Canonical Tool Surface | Research / Direction | Use as an architectural goal: interfaces can multiply, semantics should not |
 | Claude, Codex, Gemini, Grok and other assistants | External exploration entry points, not protocol partners or authorities | Use “Explore with AI” only when each link actually provides structured Sails context. Do not imply endorsement or integration |
 

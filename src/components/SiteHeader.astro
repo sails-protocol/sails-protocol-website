@@ -10,7 +10,7 @@ const labels = lang === 'pt-BR'
 const suffix = path ? `/${path}` : '/';
 ---
 <header class="glass-nav">
-  <a class="brand" href={`/${lang}/`} aria-label="Sails Protocol home"><span class="mark"><i></i><i></i></span><b>SAILS</b><small>PROTOCOL</small></a>
+  <a class="brand" href={`/${lang}/`} aria-label="Sails Protocol home"><img class="brand-wordmark" src="/brand/sails-protocol-horizontal-cor-escuro.svg" alt="Sails Protocol" /></a>
   <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label={labels.open} data-open-label={labels.open} data-close-label={labels.close}><span></span><span></span></button>
   <nav id="primary-navigation" aria-label={labels.nav}>
     <a href={`/${lang}/`} aria-current={!path ? 'page' : undefined}>{labels.home}</a>

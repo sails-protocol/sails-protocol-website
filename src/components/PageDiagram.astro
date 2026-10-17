@@ -40,7 +40,7 @@ const t = lang === 'pt-BR' ? {
   </section>
 ) : path === 'sdks' ? (
   <section class="specific-diagram sdk-composition" aria-label={`${title} ${t.visual}`}>
-    <div class="semantics-root"><span class="mark"><i></i><i></i></span><div><small>SAILS PROTOCOL</small><b>{t.stable}</b></div></div>
+    <div class="semantics-root"><img class="brand-symbol" src="/brand/sails-simbolo-cor-escuro.svg" alt="" /><div><small>SAILS PROTOCOL</small><b>{t.stable}</b></div></div>
     <div class="composition-arrow"><span>{t.compose}</span></div>
     <div class="module-band">{t.moduleNames.map((item,i)=><span class:list={{active:i===0}}>{item}</span>)}</div>
     <div class="product-label">{t.products}</div>
@@ -50,12 +50,12 @@ const t = lang === 'pt-BR' ? {
   <section class="specific-diagram integration-map" aria-label={`${title} ${t.visual}`}>
     <div class="provider-grid">{t.providerGroups.map((group,i)=><article><small>0{i+1}</small><b>{group}</b><span>{cards[i]?.title}</span><em>{cards[i]?.status}</em></article>)}</div>
     <div class="adapter-lines" aria-hidden="true">{t.providerGroups.map(()=><i></i>)}</div>
-    <div class="contract-core"><span class="mark"><i></i><i></i></span><div><small>SAILS</small><b>{t.contracts}</b></div></div>
+    <div class="contract-core"><img class="brand-symbol" src="/brand/sails-simbolo-cor-escuro.svg" alt="" /><div><small>SAILS</small><b>{t.contracts}</b></div></div>
     <div class="maturity-band"><b>{t.maturity}</b><span>{cards.slice(4).map(card=>card.title).join(' · ')}</span></div>
   </section>
 ) : path === 'developers/open-extension' ? (
   <section class="specific-diagram extension-boundary" aria-label={`${title} ${t.visual}`}>
-    <div class="extension-kernel"><span class="mark"><i></i><i></i></span><small>SAILS</small><b>{t.kernel}</b></div>
+    <div class="extension-kernel"><img class="brand-symbol" src="/brand/sails-simbolo-cor-escuro.svg" alt="" /><small>SAILS</small><b>{t.kernel}</b></div>
     <div class="extension-contracts">{t.extensionParts.map((part,i)=><article><small>0{i+1}</small><b>{part}</b><span>{cards[i]?.status}</span></article>)}</div>
     <div class="truth-boundary">{t.cannot}</div>
   </section>
@@ -75,13 +75,13 @@ const t = lang === 'pt-BR' ? {
 ) : path === 'safety-center' ? (
   <section class="specific-diagram safety-gates" aria-label={`${title} ${t.visual}`}>
     <div class="safety-track">{t.safetyLayers.map((layer,idx)=><Fragment><article><small>0{idx+1}</small><b>{layer}</b><span>{cards[idx]?.status}</span></article>{idx<3&&<i>→</i>}</Fragment>)}</div>
-    <div class="truth-core"><span class="mark"><i></i><i></i></span><div><small>SAILS</small><b>{t.truth}</b></div></div>
+    <div class="truth-core"><img class="brand-symbol" src="/brand/sails-simbolo-cor-escuro.svg" alt="" /><div><small>SAILS</small><b>{t.truth}</b></div></div>
     <div class="safety-rule">{cards.map(card=>card.title).join(' · ')}</div>
   </section>
 ) : path === 'developers' ? (
   <section class="specific-diagram developer-surfaces" aria-label={`${title} ${t.visual}`}>
     <div class="surface-columns">{cards.map((card,i)=><article><small>0{i+1}</small><b>{card.title}</b><span>{card.status}</span><p>{card.text}</p></article>)}</div>
-    <div class="shared-semantics"><span class="mark"><i></i><i></i></span><b>{t.same}</b></div>
+    <div class="shared-semantics"><img class="brand-symbol" src="/brand/sails-simbolo-cor-escuro.svg" alt="" /><b>{t.same}</b></div>
   </section>
 ) : path === 'developers/documentation' ? (
   <section class="specific-diagram docs-journey" aria-label={`${title} ${t.visual}`}>
@@ -102,12 +102,12 @@ const t = lang === 'pt-BR' ? {
 ) : path === 'explore-ai' ? (
   <section class="specific-diagram ai-context" aria-label={`${title} ${t.visual}`}>
     <div class="assistant-grid">{cards.map((card,idx)=><article><i>{['C','◉','✦','G'][idx]}</i><div><b>{card.title}</b><small>{card.status}</small></div></article>)}</div>
-    <div class="context-bridge">↔</div><div class="source-context"><span class="mark"><i></i><i></i></span><small>SAILS</small><b>{t.canonical}</b><span>docs · GitHub · WebMCP</span></div>
+    <div class="context-bridge">↔</div><div class="source-context"><img class="brand-symbol" src="/brand/sails-simbolo-cor-escuro.svg" alt="" /><small>SAILS</small><b>{t.canonical}</b><span>docs · GitHub · WebMCP</span></div>
   </section>
 ) : path === 'case-studies' ? (
   <section class="specific-diagram case-pair" aria-label={`${title} ${t.visual}`}>
     <div class="case-products">{cards.map((card,i)=><article><small>0{i+1} · {card.status}</small><b>{card.title}</b><p>{card.text}</p></article>)}</div>
-    <div class="case-connection"><span>{t.exercises}</span><i></i></div><div class="case-protocol"><span class="mark"><i></i><i></i></span><b>SAILS PROTOCOL</b><small>{t.doesNotOwn}</small></div>
+    <div class="case-connection"><span>{t.exercises}</span><i></i></div><div class="case-protocol"><img class="brand-symbol" src="/brand/sails-simbolo-cor-escuro.svg" alt="" /><b>SAILS PROTOCOL</b><small>{t.doesNotOwn}</small></div>
   </section>
 ) : (
   <section class="specific-diagram unsupported-visual" aria-label={`${title} ${t.visual}`}><b>SAILS PROTOCOL</b></section>

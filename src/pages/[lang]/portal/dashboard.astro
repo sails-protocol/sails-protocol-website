@@ -13,7 +13,7 @@ const extensions=[['OpenP2P',t.current],['OpenSettlement',t.direction],['OpenIde
 ---
 <BaseLayout lang={lang} title={`${t.preview} | Sails Portal`} description={t.text}>
   <main class="portal-shell">
-    <aside class="portal-sidebar"><a class="portal-brand" href={`/${lang}/`}><span class="mark"><i></i><i></i></span><div><b>SAILS</b><small>{t.portal}</small></div></a><nav>{menu.map(([icon,label],i)=><span class:list={['portal-nav-item',{active:i===0}]}><i>{icon}</i>{label}</span>)}</nav><div class="portal-user"><i>PX</i><div><b>{t.preview}</b><small>{t.account}</small></div></div></aside>
+    <aside class="portal-sidebar"><a class="portal-brand" href={`/${lang}/`}><img src="/brand/sails-protocol-horizontal-cor-escuro.svg" alt="Sails Protocol" /></a><nav>{menu.map(([icon,label],i)=><span class:list={['portal-nav-item',{active:i===0}]}><i>{icon}</i>{label}</span>)}</nav><div class="portal-user"><i>PX</i><div><b>{t.preview}</b><small>{t.account}</small></div></div></aside>
     <section class="portal-main">
       <div class="portal-preview-banner"><b>{t.preview}</b><span>{t.notice}</span></div>
       <header><div><small>SAILS PORTAL / {t.overview.toUpperCase()}</small><h1>{t.welcome}</h1><p>{t.text}</p></div><a href={`/${lang}/`}>{t.site} ↗</a></header>

@@ -455,10 +455,30 @@
 /* Global responsive and accessibility audit */
 html{min-width:320px;overflow-x:hidden;-webkit-text-size-adjust:100%}
 body{min-width:320px;overflow-x:hidden;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.brand{flex:0 0 auto;line-height:0}
+.brand-wordmark{display:block;width:126px;height:40px;object-fit:contain;object-position:left center}
+.brand-symbol{display:block;width:34px;height:34px;object-fit:contain}
+.sails-core .brand-symbol{width:44px;height:44px}
+.extension-home-core .brand-symbol{z-index:1;width:48px;height:48px}
+.footer-brand{display:flex;flex-direction:column;align-items:flex-start}
+.footer-brand>img{display:block;width:150px;height:auto}
+.login-brand>img{display:block;width:158px;height:auto}
+.portal-brand{min-height:58px}
+.portal-brand>img{display:block;width:150px;height:auto;max-width:100%}
 button,input,select,textarea{font:inherit}
 img,svg{max-width:100%}
 h1,h2,h3{text-wrap:balance}
 p{text-wrap:pretty}
+
+@media(max-width:1050px){
+  .portal-brand{justify-content:center}
+  .portal-brand>img{content:url('/brand/sails-simbolo-cor-escuro.svg');width:42px;height:42px}
+}
+
+@media(max-width:600px){
+  .brand-wordmark{width:108px;height:36px}
+  .footer-brand>img{width:138px}
+}
 .glass-nav nav>a[aria-current="page"]{background:rgba(255,255,255,.06);color:var(--text)}
 .locale a[aria-current="true"]{font-weight:800}
 .actions a,.sdk-actions a,.more-link,.card-link,.section-copy a,.evidence-footer a,.cases-footer a{min-height:44px;display:inline-flex;align-items:center}

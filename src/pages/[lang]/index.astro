@@ -31,7 +31,7 @@ const t = copy[lang] ?? copy.en;
           <circle class="packet packet-violet" r="5"><animateMotion dur="9s" begin="-4s" repeatCount="indefinite" path="M90 300C130 120 350 80 500 210S480 500 300 520 70 450 90 300"/></circle>
           <circle class="packet packet-white" r="4"><animateMotion dur="7s" begin="-3s" repeatCount="indefinite" path="M300 90C190 140 170 330 300 510 430 330 410 140 300 90"/></circle>
         </svg>
-        <div class="sails-core"><span class="mark"><i></i><i></i></span><b>SAILS</b><small>{t.heroSemantics}</small></div>
+        <div class="sails-core"><img class="brand-symbol" src="/brand/sails-simbolo-cor-escuro.svg" alt="" /><b>SAILS</b><small>{t.heroSemantics}</small></div>
         <span class="node n1">{t.heroNodes[0]}</span><span class="node n2">{t.heroNodes[1]}</span><span class="node n3">{t.heroNodes[2]}</span><span class="node n4">{t.heroNodes[3]}</span>
       </div>
       <div class="manifest"><span>{t.manifest[0]}</span><span>{t.manifest[1]}</span><span>{t.manifest[2]}</span><strong>{t.mantra}</strong></div>
@@ -104,7 +104,7 @@ const t = copy[lang] ?? copy.en;
     <section class="protocol-surface extension-home" id="open-extension">
       <div class="surface-intro"><p class="eyebrow">06 / {t.extensionLabel}</p><h2>{t.extensionTitle}</h2><p>{t.extensionText}</p></div>
       <div class="extension-home-visual" role="img" aria-label={t.extensionTitle}>
-        <div class="extension-home-core"><span class="mark" aria-hidden="true"><i></i><i></i></span><small>SAILS</small><b>SEMANTIC KERNEL</b></div>
+        <div class="extension-home-core"><img class="brand-symbol" src="/brand/sails-simbolo-cor-escuro.svg" alt="" /><small>SAILS</small><b>SEMANTIC KERNEL</b></div>
         <div class="extension-home-facets">{t.extensionFacets.map((item,index) => <article><span>0{index + 1}</span><div><b>{item[0]}</b><small>{item[1]}</small></div></article>)}</div>
       </div>
       <a class="surface-link" href={`/${lang}/developers/open-extension/`}>{t.extensionCta} →</a>
